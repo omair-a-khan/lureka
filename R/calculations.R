@@ -149,6 +149,12 @@ np_tower_ruleviol.scaled <- np_tower_ruleviol.lookup %>%
   filter(age == age & raw == np_tower_ruleviol) %>%
   pull(scaled)
 
+## Digit Symbol Coding
+
+np_digsymb.scaled <- np_digsymb.lookup %>%
+  filter(age == age & raw == np_digsymb) %>%
+  pull(scaled)
+
 # Mental Control
 
 np_mc1.accuracy.index <- 1 - (np_mc1_omissions + np_mc1_falsepos) / 20
