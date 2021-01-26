@@ -1,0 +1,136 @@
+---
+title: "Vanderbilt Memory & Aging Project: 7-Year Follow-up Visit Data Summary Sheet"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("R/calculations.R")
+```
+
+<!-- Global Cognition -->
+
+```{r}
+moca.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_moca, np_moca.interpretation
+)
+
+cvlt.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Trial 1", np_cvlt1, np_cvlt1z,
+  "Trial 2", np_cvlt2, np_cvlt2z,
+  "Trial 3", np_cvlt3, np_cvlt3z,
+  "Trial 4", np_cvlt4, np_cvlt4z,
+  "Trial 5", np_cvlt5, np_cvlt5z,
+  "", "", "",
+  "Total T1-T5", np_cvlt1to5, np_cvlt1to5_tscore,
+  "List B", np_cvltb, np_cvltbz,
+  "Short Delay Free Recall", np_cvlt_sdfr, np_cvlt_sdfr_z,
+  "Short Delay Cued Recall", np_cvlt_sdcr, np_cvlt_sdcr_z,
+  "Long Delay Free Recall", np_cvlt_ldfr, np_cvlt_ldfr_z,
+  "Long Delay Cued Recall", np_cvlt_ldcr, np_cvlt_ldcr_z,
+  "Total Recognition Hits", np_cvltrec_hits, np_cvltrec_hits_z,
+  "Total False Positives", np_cvltrec_falsepos, np_cvltrecog_falsepos_z,
+  "Total Repetitions", np_cvlt_reps, np_cvlt_reps,
+  "Total Intrusions", np_cvlt_intrus, np_cvlt_intrus_z
+)
+
+biber.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Trial 1", np_biber1, np_biber1.scaled,
+  "Trial 2", np_biber2, np_biber2.scaled,
+  "Trial 3", np_biber3, np_biber3.scaled,
+  "Trial 4", np_biber4, np_biber4.scaled,
+  "Trial 5", np_biber5, np_biber5.scaled,
+  "Total T1-T5", np_biber_t1to5, np_biber_t1to5.scaled,
+  "Distractor Set", np_biberb, np_biberb.scaled,
+  "Immediate Recall", np_biber_sd, np_biber_sd.scaled,
+  "Delayed Recall", np_biber_ld, np_biber_ld.scaled,
+  "Recognition - Hits", np_biber_hits, "",
+  "Recognition - Total False Alarm", np_biber_falsealarms, "",
+  "Total Perseverations", np_biber_t1to5_persev, "",
+  "Total Extraneous Responses", np_biber_t1to5_extra, ""
+)
+
+bnt.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_bnt, np_bnt.scaled
+)
+
+animals.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_anim, np_anim_tscore
+)
+
+gds.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_gds, np_gds.interpretation
+)
+
+hvot.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_hvot, np_hvot.scaled
+)
+
+dkefs_trail.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Number Sequencing: Time", np_tmta, np_tmta.scaled,
+  "Number Sequencing: Errors (%)", np_tmta_seqerr, np_tmta_seqerr.scaled,
+  "N : Set-Loss Errors (%)", np_tmta_seterr, np_tmta_seterr.scaled,
+  "Number-Letter: Time", np_tmtb, np_tmtb.scaled,
+  "N-L: Sequencing Errors (%)", np_tmtb_seqerr, np_tmtb_seqerr.scaled,
+  "N-L: Set-Loss Errors (%)", np_tmtb_seterr, np_tmtb_seterr.scaled
+)
+
+dkefs_color.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Color Naming Time", np_color, np_color.scaled,
+  "Word Reading Time", np_word, np_word.scaled,
+  "Inhibition Time", np_inhibit, np_inhibit.scaled
+)
+
+cowa.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "F - Total Words", np_fas_f, "",
+  "A - Total Words", np_fas_a, "",
+  "S - Total Words", np_fas_s, "",
+  "Total FAS Words", np_fas, np_fas_tscore,
+  "Total Intrusions", np_fas_intrus, "",
+  "Total Repetitions", np_fas_rep, ""
+)
+
+tower.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Achievement Score", np_tower, np_tower.scaled,
+  "Total Rule Violations (%)", np_tower_ruleviol, np_tower_ruleviol.scaled
+)
+
+digit_symbol.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total", np_digsymb, np_digsymb.scaled
+)
+
+mc.df <- tibble::tribble(
+  ~ a, ~ b, ~ c, ~ d, ~ e,
+  "Item 1", np_mc1_time, np_mc1_omissions, np_mc1_falsepos, np_mc1.accuracy.index,
+  "Item 2", np_mc2_time, np_mc2_omissions, np_mc2_falsepos, np_mc2.accuracy.index,
+  "Item 3", np_mc3_time, np_mc3_omissions, np_mc3_falsepos, np_mc3.accuracy.index,
+  "", "", "", "Item 1-3 Total Score", np_mc1_3.total,
+  "Item 4", np_mc4_time, np_mc4_omissions, np_mc4_falsepos, np_mc4.accuracy.index,
+  "Item 5", np_mc5_time, np_mc5_omissions, np_mc5_falsepos, np_mc5.accuracy.index,
+  "Item 6", np_mc6_time, np_mc6_omissions, np_mc6_falsepos, np_mc6.accuracy.index,
+  "Item 7", np_mc7_time, np_mc7_omissions, np_mc7_falsepos, np_mc7.accuracy.index,
+  "Item 8", np_mc8_time, np_mc8_omissions, np_mc8_falsepos, np_mc8.accuracy.index,
+  "", "", "", "Automatized MC", np_mc_auto_mc.accuracy.index,
+  "", "", "", "Non-Automatized MC", np_mc_nonauto_mc.accuracy.index,
+  "", "Kaplan Raw Score", np_mc_kaplan, "Kaplan SS", np_mc_kaplan_ss
+)
+
+symbol_span.df <- tibble::tribble(
+  ~ a, ~ b, ~ c,
+  "Total Raw Score", np_symbol, np_symbol.scaled,
+  "# Correct Trials", np_symbol_trials, ""
+)
+```
+
