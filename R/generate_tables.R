@@ -12,7 +12,6 @@ generate_tables = function(np.df) {
       "Trial 3", np.df$np_cvlt3, np.df$np_cvlt3z,
       "Trial 4", np.df$np_cvlt4, np.df$np_cvlt4z,
       "Trial 5", np.df$np_cvlt5, np.df$np_cvlt5z,
-      NA, NA, NA,
       "Total T1-T5", np.df$np_cvlt1to5, np.df$np_cvlt1to5_tscore,
       "List B", np.df$np_cvltb, np.df$np_cvltbz,
       "Short Delay Free Recall", np.df$np_cvlt_sdfr, np.df$np_cvlt_sdfr_z,
