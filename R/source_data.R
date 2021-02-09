@@ -1,5 +1,0 @@
-library(purrr)
-library(tidyr)
-library(dplyr)
-file.sources <- list.files("~/dev/lureka/data-raw", pattern = "*.R", full.names = TRUE)
-purrr::walk(file.sources, source)
