@@ -10,8 +10,8 @@ compute_scores <- function(data, map_id) {
   }
   
   # replace invalid values with NA
-  np.df[np.df == -9999 | np.df == "-9999"] <- NA
-  
+  np.df[np.df %in% -9999 | np.df %in% "-9999"] <- NA
+
   np.df <- within(np.df, {
     np_age <- age
     np_education <- education
