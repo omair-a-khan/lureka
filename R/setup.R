@@ -109,7 +109,7 @@ np.var <- c(
 
 np.var <- c(
   np.var,
-  paste0("np_anim_q", formatC(1:4, width = 1, flag = "0")),
-  c(paste0("gds", formatC(1:9, width = 1)), paste0("gds", formatC(10:30, width = 2, flag = "0"))),
+  paste0("np_anim_q", 1:4),
+  paste0("gds", 1:30),
   paste0("np_tower", formatC(1:9, width = 2, flag = "0"))
 )
