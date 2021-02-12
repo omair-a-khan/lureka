@@ -10,6 +10,9 @@ compute_scores <- function(data, map_id) {
   }
   
   # replace invalid values with NA
+  np.df[np.df %in% -6666 | np.df %in% "-6666"] <- NA
+  np.df[np.df %in% -7777 | np.df %in% "-7777"] <- NA
+  np.df[np.df %in% -8888 | np.df %in% "-8888"] <- NA
   np.df[np.df %in% -9999 | np.df %in% "-9999"] <- NA
 
   np.df <- within(np.df, {
