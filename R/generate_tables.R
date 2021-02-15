@@ -1,4 +1,4 @@
-generate_tables = function(np.df) {
+generate_tables <- function(np.df) {
   tables.list <- list(
     moca.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
@@ -20,7 +20,7 @@ generate_tables = function(np.df) {
       "Long Delay Cued Recall", np.df$np_cvlt_ldcr, np.df$np_cvlt_ldcr_z,
       "Total Recognition Hits", np.df$np_cvltrec_hits, np.df$np_cvltrec_hits_z,
       "Total False Positives", np.df$np_cvltrec_falsepos, np.df$np_cvltrecog_falsepos_z,
-      "Total Repetitions", np.df$np_cvlt_reps, np.df$np_cvlt_reps,
+      "Total Repetitions", np.df$np_cvlt_reps, np.df$np_cvlt_reps_z,
       "Total Intrusions", np.df$np_cvlt_intrus, np.df$np_cvlt_intrus_z
     ),
     
@@ -112,7 +112,7 @@ generate_tables = function(np.df) {
     ),
     
     mc2.df = tibble::tribble(
-      ~ item, ~ score, ~ scaled_score,
+      ~ item, ~ score, ~ scaled_score_chr,
       "Item 1-3 Total Score", np.df$np_mc1_3.total, NA,
       "Automatized MC", np.df$np_mc_auto_mc.accuracy.index, NA,
       "Non-Automatized MC", np.df$np_mc_nonauto_mc.accuracy.index, NA,
