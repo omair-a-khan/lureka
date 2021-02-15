@@ -1,21 +1,28 @@
-compute_scores <- function(data, map_id) {
-  np.df <- data[data$map_id == map_id, np.var]
-  
-  if (!np.df$age %in% 60:110) {
-    stop("Age is out of bounds.\n")
+compute_scores <- function(data, map_id = NULL) {
+  if (is.null(map_id)) {
+    np.df <- data[, c(np.var, "epoch")]
+  } else {
+    np.df <- data[data$map_id == map_id, c(np.var, "epoch")]
   }
   
-  if (!np.df$education %in% 0:22) {
-    stop("Education is out of bounds.\n")
+  if (!any(np.df$age %in% 60:110)) {
+    offending_rows <- which(!np.df$age %in% 60:110)
+    stop(glue::glue("Age is out of bounds on rows {paste0(offending_rows, collapse = ', ')}.\n"))
+  }
+  
+  if (!any(np.df$education %in% 0:22)) {
+    offending_rows <- which(!np.df$education %in% 0:22)
+    stop(glue::glue("Education is out of bounds on rows {paste0(offending_rows, collapse = ', ')}.\n"))
   }
   
   # replace invalid values with NA
-  np.df[np.df %in% -6666 | np.df %in% "-6666"] <- NA
-  np.df[np.df %in% -7777 | np.df %in% "-7777"] <- NA
-  np.df[np.df %in% -8888 | np.df %in% "-8888"] <- NA
-  np.df[np.df %in% -9999 | np.df %in% "-9999"] <- NA
+  np.df[np.df == -6666] <- NA
+  np.df[np.df == -7777] <- NA
+  np.df[np.df == -8888] <- NA
+  np.df[np.df == -9999] <- NA
 
   np.df <- within(np.df, {
+    
     np_age <- age
     np_education <- education
     
