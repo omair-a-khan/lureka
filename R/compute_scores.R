@@ -42,7 +42,7 @@ compute_scores <- function(data, map_id = NULL) {
     
     ## CVLT-II
     
-    #! Manual coding of scaled scores
+    np_cvlt1to5_tscore.z <- (np_cvlt1to5_tscore - 50) / 10
     
     ## Biber
     
@@ -68,6 +68,8 @@ compute_scores <- function(data, map_id = NULL) {
     ## Animals
     
     np_anim <- sum(c(np_anim_q1, np_anim_q2, np_anim_q3, np_anim_q4))
+    
+    np_anim_tscore.z <- (np_anim_tscore - 50) / 10
     
     #! Manual coding of scaled scores
     
@@ -105,6 +107,8 @@ compute_scores <- function(data, map_id = NULL) {
     np_hvot.scaled <- np_hvot.lookup %>%
       filter(age == np_hvot.age & education == np_education & raw == np_hvot.raw) %>%
       pull(scaled)
+    
+    np_hvot.scaled.z <- (np_hvot.scaled - 50) / 10
     
     # Attention/Executive Functioning/Information Processing
     
@@ -160,6 +164,8 @@ compute_scores <- function(data, map_id = NULL) {
     ## COWA
     
     np_fas <- sum(c(np_fas_f, np_fas_a, np_fas_s))
+    
+    np_fas_tscore.z <- (np_fas_tscore - 50) / 10
     
     ## Tower Test
     
