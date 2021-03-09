@@ -26,7 +26,7 @@ params:
 ```{r setup, include = FALSE}
 library(kableExtra)
 
-data.df <- full_data.df[full_data.df$map_id == params$map_id, ]
+data.df <- complete_np_data.df[complete_np_data.df$map_id == params$map_id, ]
 data.df <- map_df(1:nrow(data.df), ~compute_scores(data.df[., ]))
 
 np.df <- data.df[data.df$epoch == params$epoch, ]
