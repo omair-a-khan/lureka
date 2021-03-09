@@ -23,8 +23,6 @@ source("R/compute_scores.R")
 source("R/generate_data.R")
 source("R/generate_tables.R")
 source("R/plotly_functions.R")
-source("R/shiny_ui.R")
-source("R/shiny_server.R")
 
 # =========================================================================
 # load data
