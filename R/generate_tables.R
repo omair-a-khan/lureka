@@ -1,5 +1,27 @@
 generate_tables <- function(np.df) {
   tables.list <- list(
+    metadata.df = tibble::tribble(
+      ~ item, ~ value,
+      "Epoch", as.character(np.df$epoch),
+      "MAP ID", as.character(np.df$map_id),
+      "VMAC ID", as.character(np.df$vmac_id),
+      "Age", as.character(np.df$age),
+      "Sex", as.character(np.df$sex),
+      "Education", as.character(np.df$education),
+      "Race", as.character(np.df$race),
+      "Ethnicity", as.character(np.df$ethnicity),
+      "Testing Date", as.character(np.df$np_date),
+      "Examiner", as.character(np.df$np_examiner)
+    ),
+    
+    metadata_wide.df = tibble::tribble(
+      ~ a, ~ b, ~ c, ~ d, ~ e,
+      "Epoch", "MAP ID", "VMAC ID", "Testing Date", "Examiner",
+      as.character(np.df$epoch), as.character(np.df$map_id), as.character(np.df$vmac_id), as.character(np.df$np_date), as.character(np.df$np_examiner),
+      "Age", "Sex", "Education", "Race", "Ethnicity",
+      as.character(np.df$age), as.character(np.df$sex), as.character(np.df$education), as.character(np.df$race), as.character(np.df$ethnicity)
+    ),
+    
     moca.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
       "Total", np.df$np_moca, np.df$np_moca.interpretation
