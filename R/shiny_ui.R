@@ -17,8 +17,8 @@ sidebar <- dashboardSidebar(
     menuItem("Summary Sheet", tabName = "summary_sheet", icon = icon("columns")),
     menuItem(
       "Longitudinal Plots", tabName = "plots", icon = icon("chart-line"), startExpanded = TRUE, 
-      menuSubItem("Line Plots", tabName = "line_plots"),
-      menuSubItem("Dot Plots", tabName = "dot_plots")
+      menuSubItem("Dot Plots", tabName = "dot_plots"),
+      menuSubItem("Line Plots", tabName = "line_plots")
     ),
     menuItem("Options", tabName = "options", icon = icon("cog"))
   )
@@ -104,6 +104,22 @@ body <- dashboardBody(
     ),
     
     tabItem(
+      tabName = "dot_plots",
+      fluidRow(
+        box(
+          title = "CVLT-II", width = 12, status = "primary", solidHeader = TRUE,
+          plotlyOutput("cvlt_dot.plot")
+        )
+      ),
+      fluidRow(
+        box(
+          title = "Biber", width = 12, status = "primary", solidHeader = TRUE,
+          plotlyOutput("biber_dot.plot")
+        )
+      )
+    ),
+    
+    tabItem(
       tabName = "line_plots",
       fluidRow(
         tabBox(
@@ -118,22 +134,7 @@ body <- dashboardBody(
           title = "Biber", width = 12, side = "left",
           tabPanel("Learning", plotlyOutput("biber_line_learning.plot")),
           tabPanel("Recall", plotlyOutput("biber_line_recall.plot")),
-          tabPanel("Recognition", plotlyOutput("biber_line_recognition.unscaled.plot"))
-        )
-      )
-    ),
-    tabItem(
-      tabName = "dot_plots",
-      fluidRow(
-        box(
-          title = "CVLT-II", width = 12, status = "primary", solidHeader = TRUE,
-          plotlyOutput("cvlt_dot.plot")
-        )
-      ),
-      fluidRow(
-        box(
-          title = "Biber", width = 12, status = "primary", solidHeader = TRUE,
-          plotlyOutput("biber_dot.plot")
+          tabPanel("Recognition", plotlyOutput("biber_line_recognition.plot"))
         )
       )
     ),
