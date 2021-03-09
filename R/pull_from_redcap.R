@@ -22,8 +22,8 @@ download_redcap_data <- function(token, api_uri = "https://redcap.vanderbilt.edu
 
 pull_from_redcap <- function(var = np.var, epoch) {
   if (epoch == 1) {
-    main.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == 1 & redcap_tokens.df$name = "main", "token"])
-    addendum.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == 1 & redcap_tokens.df$name = "addendum", "token"])
+    main.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == 1 & redcap_tokens.df$name == "main", "token"])
+    addendum.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == 1 & redcap_tokens.df$name == "addendum", "token"])
     
     main.df <- main.df[, np_main.var]
     addendum.df <- addendum.df[, np_addendum.var]
