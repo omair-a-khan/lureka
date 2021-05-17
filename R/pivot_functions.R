@@ -85,5 +85,10 @@ pivot_heaton <- function(lookup.df) {
       names_to = "heaton_code",
       values_to = "tscore",
       values_transform = list(scaled = as.character)
+    ) %>%
+    separate(
+      col = heaton_code,
+      into = c("sex", "education_code", "age_code", "ethnicity"),
+      sep = "/"
     )
 }
