@@ -77,3 +77,13 @@ pivot_age_across_scale_chr <- function(lookup.df) {
       age, raw
     )
 }
+
+pivot_heaton <- function(lookup.df) {
+  lookup.df %>%
+    pivot_longer(
+      cols = matches("\\/", perl = TRUE),
+      names_to = "heaton_code",
+      values_to = "tscore",
+      values_transform = list(scaled = as.character)
+    )
+}

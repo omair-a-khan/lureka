@@ -59,3 +59,10 @@ enrollment_hvot_tscore.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file,
 enrollment_mental_control.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "mental_control") %>%
   pivot_age_across_scale_num()
 
+enrollment_heaton_scaled.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "heaton_scaled")
+enrollment_heaton_age.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "heaton_age")
+enrollment_heaton_education.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "heaton_education")
+enrollment_heaton_fas.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "heaton_fas") %>%
+  pivot_heaton()
+enrollment_heaton_animals.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "heaton_animals") %>%
+  pivot_heaton()
