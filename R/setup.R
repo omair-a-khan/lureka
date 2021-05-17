@@ -9,6 +9,7 @@ library(plotly)
 library(kableExtra)
 library(RColorBrewer)
 library(REDCapR)
+library(readxl)
 
 # =========================================================================
 # source scripts
