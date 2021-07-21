@@ -48,6 +48,7 @@ compute_scores_eligibility <- function(data, map_id = NULL) {
         np_age >= 70 & np_age < 80 ~ (np_srt_immed_recall_total - 53.13) / 5.99,
       ),
       np_srt_long_delay_free_z = ">??",
+      np_srt_long_delay_recognition_z = "???",
       np_srt_intrusions_z = "???",
       np_bvrt_total_score_z = eligibility_benton.lookup %>% 
         filter(age == np_age & raw == np_bvrt_total_score) %>% 
