@@ -1,8 +1,8 @@
-download_redcap_data <- function(token, api_uri = "https://redcap.vanderbilt.edu/api/") {
+download_redcap_data <- function(token, var = np.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
   data_part1.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
     token = token,
-    fields = np.var[!np.var %in% np_label.var],
+    fields = var[!var %in% np_label.var],
     raw_or_label = "raw",
     verbose = FALSE
   )$data
@@ -46,6 +46,13 @@ pull_from_redcap <- function(var = np.var, epoch) {
   }
   
   output.df$np_mc_kaplan_ss <- as.character(output.df$np_mc_kaplan_ss)
+  output.df$epoch <- epoch
+  
+  return(output.df)
+}
+
+pull_from_redcap_eligibility <- function(var = np.var, epoch) {
+  output.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == "elig", "token"])
   output.df$epoch <- epoch
   
   return(output.df)

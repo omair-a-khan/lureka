@@ -4,7 +4,7 @@ header <- dashboardHeader(
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    selectInput("epoch", "Epoch", unique(complete_np_data.df$epoch)),
+    # selectInput("epoch", "Epoch", unique(complete_np_data.df$epoch)),
     selectInput("vmac_id", "VMAC ID", ""),
     hr(),
     menuItem("Summary Sheet", tabName = "summary_sheet", icon = icon("columns")),
@@ -91,11 +91,11 @@ body <- dashboardBody(
             HTML("<em><h4>FAQ</h4></em>"),
             tableOutput("faq.df")
           ),
-          box(
-            title = "Mood", width = NULL, status = "primary", solidHeader = TRUE,
-            HTML("<em><h4>GDS</h4></em>"),
-            tableOutput("gds.df")
-          ),
+          # box(
+          #   title = "Mood", width = NULL, status = "primary", solidHeader = TRUE,
+          #   HTML("<em><h4>GDS</h4></em>"),
+          #   tableOutput("gds.df")
+          # ),
           box(
             title = "Notes", width = NULL, status = "primary", solidHeader = TRUE,
             textOutput("np_notes.str")
