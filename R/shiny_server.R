@@ -332,7 +332,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Z-Score",
@@ -369,7 +369,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Z-Score",
@@ -406,7 +406,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Z-Score",
@@ -445,7 +445,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Z-Score",
@@ -482,7 +482,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Z-Score",
@@ -516,7 +516,7 @@ server <- shinyServer(
             title = "Epoch",
             zeroline = F,
             showticklabels = T,
-            range = c(1, 5)
+            range = c(-0.5, 5)
           ),
           yaxis = list(
             title = "Value",
