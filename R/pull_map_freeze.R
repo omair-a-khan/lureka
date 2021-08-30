@@ -19,7 +19,7 @@ pull_map_freeze <- function(data.list = MAPfreeze.list, var = np.var, epoch) {
     output.df <- output.df[, var]
   }
   
-  output.df$np_mc_kaplan_ss <- as.character(output.df$np_mc_kaplan_ss)
+  output.df$np_mc_kaplan_sscore <- as.character(output.df$np_mc_kaplan_sscore)
   output.df$epoch <- epoch
   
   return(output.df)

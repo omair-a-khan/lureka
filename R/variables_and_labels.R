@@ -18,11 +18,11 @@ np.var <- c(
   "np_cvlt3",
   "np_cvlt4",
   "np_cvlt5",
-  "np_cvlt1z",
-  "np_cvlt2z",
-  "np_cvlt3z",
-  "np_cvlt4z",
-  "np_cvlt5z",
+  "np_cvlt1_zscore",
+  "np_cvlt2_zscore",
+  "np_cvlt3_zscore",
+  "np_cvlt4_zscore",
+  "np_cvlt5_zscore",
   "np_cvlt1to5",
   "np_cvlt1to5_tscore",
   "np_cvltb",
@@ -34,15 +34,15 @@ np.var <- c(
   "np_cvltrec_falsepos",
   "np_cvlt_reps",
   "np_cvlt_intrus",
-  "np_cvltbz",
-  "np_cvlt_sdfr_z",
-  "np_cvlt_sdcr_z",
-  "np_cvlt_ldfr_z",
-  "np_cvlt_ldcr_z",
-  "np_cvltrec_hits_z",
-  "np_cvltrecog_falsepos_z",
-  "np_cvlt_reps_z",
-  "np_cvlt_intrus_z",
+  "np_cvltb_zscore",
+  "np_cvlt_sdfr_zscore",
+  "np_cvlt_sdcr_zscore",
+  "np_cvlt_ldfr_zscore",
+  "np_cvlt_ldcr_zscore",
+  "np_cvltrec_hits_zscore",
+  "np_cvltrecog_falsepos_zscore",
+  "np_cvlt_reps_zscore",
+  "np_cvlt_intrus_zscore",
   "np_biber1",
   "np_biber2",
   "np_biber3",
@@ -100,7 +100,7 @@ np.var <- c(
   "np_mc7_falsepos",
   "np_mc8_falsepos",
   "np_mc_kaplan",
-  "np_mc_kaplan_ss",
+  "np_mc_kaplan_sscore",
   "np_symbol",
   "np_symbol_trials"
 )
@@ -109,7 +109,7 @@ np.var <- c(
   np.var,
   paste0("np_anim_q", 1:4),
   paste0("gds", 1:30),
-  paste0("np_tower", formatC(1:9, width = 2, flag = "0"))
+  paste0("np_tower", 1:9)
 )
 
 np_label.var <- c("np_examiner", "ethnicity", "race", "sex")
@@ -131,11 +131,11 @@ np_main.var <- c(
   "np_cvlt3",
   "np_cvlt4",
   "np_cvlt5",
-  "np_cvlt1z",
-  "np_cvlt2z",
-  "np_cvlt3z",
-  "np_cvlt4z",
-  "np_cvlt5z",
+  "np_cvlt1_zscore",
+  "np_cvlt2_zscore",
+  "np_cvlt3_zscore",
+  "np_cvlt4_zscore",
+  "np_cvlt5_zscore",
   "np_cvlt1to5",
   "np_cvlt1to5_tscore",
   "np_cvltb",
@@ -147,15 +147,15 @@ np_main.var <- c(
   "np_cvltrec_falsepos",
   "np_cvlt_reps",
   "np_cvlt_intrus",
-  "np_cvltbz",
-  "np_cvlt_sdfr_z",
-  "np_cvlt_sdcr_z",
-  "np_cvlt_ldfr_z",
-  "np_cvlt_ldcr_z",
-  "np_cvltrec_hits_z",
-  "np_cvltrecog_falsepos_z",
-  "np_cvlt_reps_z",
-  "np_cvlt_intrus_z",
+  "np_cvltb_zscore",
+  "np_cvlt_sdfr_zscore",
+  "np_cvlt_sdcr_zscore",
+  "np_cvlt_ldfr_zscore",
+  "np_cvlt_ldcr_zscore",
+  "np_cvltrec_hits_zscore",
+  "np_cvltrecog_falsepos_zscore",
+  "np_cvlt_reps_zscore",
+  "np_cvlt_intrus_zscore",
   "np_biber1",
   "np_biber2",
   "np_biber3",
@@ -222,15 +222,15 @@ np_main.var <- c(
   "gds28",
   "gds29",
   "gds30",
-  "np_tower01",
-  "np_tower02",
-  "np_tower03",
-  "np_tower04",
-  "np_tower05",
-  "np_tower06",
-  "np_tower07",
-  "np_tower08",
-  "np_tower09"
+  "np_tower1",
+  "np_tower2",
+  "np_tower3",
+  "np_tower4",
+  "np_tower5",
+  "np_tower6",
+  "np_tower7",
+  "np_tower8",
+  "np_tower9"
 )
 
 np_addendum.var <- c("map_id", np.var[!np.var %in% np_main.var])
@@ -239,21 +239,21 @@ np_addendum.var <- c("map_id", np.var[!np.var %in% np_main.var])
 # CVLT variables and labels
 
 cvlt.var <- c(
-  "np_cvlt1z",
-  "np_cvlt2z",
-  "np_cvlt3z",
-  "np_cvlt4z",
-  "np_cvlt5z",
-  "np_cvlt1to5_tscore.z",
-  "np_cvltbz",
-  "np_cvlt_sdfr_z",
-  "np_cvlt_sdcr_z",
-  "np_cvlt_ldfr_z",
-  "np_cvlt_ldcr_z",
-  "np_cvltrec_hits_z",
-  "np_cvltrecog_falsepos_z",
-  "np_cvlt_reps_z",
-  "np_cvlt_intrus_z"
+  "np_cvlt1_zscore",
+  "np_cvlt2_zscore",
+  "np_cvlt3_zscore",
+  "np_cvlt4_zscore",
+  "np_cvlt5_zscore",
+  "np_cvlt1to5_zscore",
+  "np_cvltb_zscore",
+  "np_cvlt_sdfr_zscore",
+  "np_cvlt_sdcr_zscore",
+  "np_cvlt_ldfr_zscore",
+  "np_cvlt_ldcr_zscore",
+  "np_cvltrec_hits_zscore",
+  "np_cvltrecog_falsepos_zscore",
+  "np_cvlt_reps_zscore",
+  "np_cvlt_intrus_zscore"
 )
 
 cvlt.unscaled.var <- c(
@@ -275,27 +275,27 @@ cvlt.unscaled.var <- c(
 )
 
 cvlt_learning.var <- c(
-  "np_cvlt1z", 
-  "np_cvlt2z", 
-  "np_cvlt3z", 
-  "np_cvlt4z", 
-  "np_cvlt5z", 
-  "np_cvlt1to5_tscore.z", 
-  "np_cvltbz"
+  "np_cvlt1_zscore", 
+  "np_cvlt2_zscore", 
+  "np_cvlt3_zscore", 
+  "np_cvlt4_zscore", 
+  "np_cvlt5_zscore", 
+  "np_cvlt1to5_zscore", 
+  "np_cvltb_zscore"
 )
 
 cvlt_recall.var <- c(
-  "np_cvlt_sdfr_z", 
-  "np_cvlt_sdcr_z", 
-  "np_cvlt_ldfr_z", 
-  "np_cvlt_ldcr_z"
+  "np_cvlt_sdfr_zscore", 
+  "np_cvlt_sdcr_zscore", 
+  "np_cvlt_ldfr_zscore", 
+  "np_cvlt_ldcr_zscore"
 )
 
 cvlt_recognition.var <- c(
-  "np_cvltrec_hits_z", 
-  "np_cvltrecog_falsepos_z", 
-  "np_cvlt_reps_z", 
-  "np_cvlt_intrus_z"
+  "np_cvltrec_hits_zscore", 
+  "np_cvltrecog_falsepos_zscore", 
+  "np_cvlt_reps_zscore", 
+  "np_cvlt_intrus_zscore"
 )
 
 cvlt.names <- c(
@@ -344,32 +344,32 @@ cvlt_recognition.names <- c(
 # Biber variables and labels
 
 biber.var <- c(
-  "np_biber1.scaled",
-  "np_biber2.scaled",
-  "np_biber3.scaled",
-  "np_biber4.scaled",
-  "np_biber5.scaled",
-  "np_biber_t1to5.scaled",
-  "np_biberb.scaled",
-  "np_biber_sd.scaled",
-  "np_biber_ld.scaled"
+  "np_biber1_zscore",
+  "np_biber2_zscore",
+  "np_biber3_zscore",
+  "np_biber4_zscore",
+  "np_biber5_zscore",
+  "np_biber_t1to5_zscore",
+  "np_biberb_zscore",
+  "np_biber_sd_zscore",
+  "np_biber_ld_zscore"
 )
 
-biber.unscaled.var <- gsub(".scaled", "", biber.var)
+biber.unscaled.var <- gsub("_zscore", "", biber.var)
 
 biber_learning.var <- c(
-  "np_biber1.scaled", 
-  "np_biber2.scaled", 
-  "np_biber3.scaled", 
-  "np_biber4.scaled", 
-  "np_biber5.scaled", 
-  "np_biber_t1to5.scaled", 
-  "np_biberb.scaled"
+  "np_biber1_zscore", 
+  "np_biber2_zscore", 
+  "np_biber3_zscore", 
+  "np_biber4_zscore", 
+  "np_biber5_zscore", 
+  "np_biber_t1to5_zscore", 
+  "np_biberb_zscore"
 )
 
 biber_recall.var <- c(
-  "np_biber_sd.scaled", 
-  "np_biber_ld.scaled"
+  "np_biber_sd_zscore", 
+  "np_biber_ld_zscore"
 )
 
 biber_recognition.var <- c(

@@ -29,34 +29,34 @@ generate_tables <- function(np.df) {
     
     cvlt.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Trial 1", np.df$np_cvlt1, np.df$np_cvlt1z,
-      "Trial 2", np.df$np_cvlt2, np.df$np_cvlt2z,
-      "Trial 3", np.df$np_cvlt3, np.df$np_cvlt3z,
-      "Trial 4", np.df$np_cvlt4, np.df$np_cvlt4z,
-      "Trial 5", np.df$np_cvlt5, np.df$np_cvlt5z,
+      "Trial 1", np.df$np_cvlt1, np.df$np_cvlt1_zscore,
+      "Trial 2", np.df$np_cvlt2, np.df$np_cvlt2_zscore,
+      "Trial 3", np.df$np_cvlt3, np.df$np_cvlt3_zscore,
+      "Trial 4", np.df$np_cvlt4, np.df$np_cvlt4_zscore,
+      "Trial 5", np.df$np_cvlt5, np.df$np_cvlt5_zscore,
       "Total T1-T5", np.df$np_cvlt1to5, np.df$np_cvlt1to5_tscore,
-      "List B", np.df$np_cvltb, np.df$np_cvltbz,
-      "Short Delay Free Recall", np.df$np_cvlt_sdfr, np.df$np_cvlt_sdfr_z,
-      "Short Delay Cued Recall", np.df$np_cvlt_sdcr, np.df$np_cvlt_sdcr_z,
-      "Long Delay Free Recall", np.df$np_cvlt_ldfr, np.df$np_cvlt_ldfr_z,
-      "Long Delay Cued Recall", np.df$np_cvlt_ldcr, np.df$np_cvlt_ldcr_z,
+      "List B", np.df$np_cvltb, np.df$np_cvltb_zscore,
+      "Short Delay Free Recall", np.df$np_cvlt_sdfr, np.df$np_cvlt_sdfr_zscore,
+      "Short Delay Cued Recall", np.df$np_cvlt_sdcr, np.df$np_cvlt_sdcr_zscore,
+      "Long Delay Free Recall", np.df$np_cvlt_ldfr, np.df$np_cvlt_ldfr_zscore,
+      "Long Delay Cued Recall", np.df$np_cvlt_ldcr, np.df$np_cvlt_ldcr_zscore,
       "Total Recognition Hits", np.df$np_cvltrec_hits, np.df$np_cvltrec_hits_z,
-      "Total False Positives", np.df$np_cvltrec_falsepos, np.df$np_cvltrecog_falsepos_z,
-      "Total Repetitions", np.df$np_cvlt_reps, np.df$np_cvlt_reps_z,
-      "Total Intrusions", np.df$np_cvlt_intrus, np.df$np_cvlt_intrus_z
+      "Total False Positives", np.df$np_cvltrec_falsepos, np.df$np_cvltrecog_falsepos_zscore,
+      "Total Repetitions", np.df$np_cvlt_reps, np.df$np_cvlt_reps_zscore,
+      "Total Intrusions", np.df$np_cvlt_intrus, np.df$np_cvlt_intrus_zscore,
     ),
     
     biber.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Trial 1", np.df$np_biber1, np.df$np_biber1.scaled,
-      "Trial 2", np.df$np_biber2, np.df$np_biber2.scaled,
-      "Trial 3", np.df$np_biber3, np.df$np_biber3.scaled,
-      "Trial 4", np.df$np_biber4, np.df$np_biber4.scaled,
-      "Trial 5", np.df$np_biber5, np.df$np_biber5.scaled,
-      "Total T1-T5", np.df$np_biber_t1to5, np.df$np_biber_t1to5.scaled,
-      "Distractor Set", np.df$np_biberb, np.df$np_biberb.scaled,
-      "Immediate Recall", np.df$np_biber_sd, np.df$np_biber_sd.scaled,
-      "Delayed Recall", np.df$np_biber_ld, np.df$np_biber_ld.scaled,
+      "Trial 1", np.df$np_biber1, np.df$np_biber1_zscore,
+      "Trial 2", np.df$np_biber2, np.df$np_biber2_zscore,
+      "Trial 3", np.df$np_biber3, np.df$np_biber3_zscore,
+      "Trial 4", np.df$np_biber4, np.df$np_biber4_zscore,
+      "Trial 5", np.df$np_biber5, np.df$np_biber5_zscore,
+      "Total T1-T5", np.df$np_biber_t1to5, np.df$np_biber_t1to5_zscore,
+      "Distractor Set", np.df$np_biberb, np.df$np_biberb_zscore,
+      "Immediate Recall", np.df$np_biber_sd, np.df$np_biber_sd_zscore,
+      "Delayed Recall", np.df$np_biber_ld, np.df$np_biber_ld_zscore,
       "Recognition - Hits", np.df$np_biber_hits, NA,
       "Recognition - Total False Alarm", np.df$np_biber_falsealarms, NA,
       "Total Perseverations", np.df$np_biber_t1to5_persev, NA,
@@ -65,7 +65,7 @@ generate_tables <- function(np.df) {
     
     bnt.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Total", np.df$np_bnt, np.df$np_bnt.scaled
+      "Total", np.df$np_bnt, np.df$np_bnt_zscore
     ),
     
     animals.df = tibble::tribble(
@@ -80,24 +80,24 @@ generate_tables <- function(np.df) {
     
     hvot.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Total", np.df$np_hvot, np.df$np_hvot.scaled
+      "Total", np.df$np_hvot, np.df$np_hvot_tscore
     ),
     
     dkefs_trail.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Number Sequencing: Time", np.df$np_tmta, np.df$np_tmta.scaled,
-      "Number Sequencing: Errors (%)", np.df$np_tmta_seqerr, np.df$np_tmta_seqerr.scaled,
-      "Number Sequencing: Set-Loss Errors (%)", np.df$np_tmta_seterr, np.df$np_tmta_seterr.scaled,
-      "Number-Letter: Time", np.df$np_tmtb, np.df$np_tmtb.scaled,
-      "Number-Letter: Sequencing Errors (%)", np.df$np_tmtb_seqerr, np.df$np_tmtb_seqerr.scaled,
-      "Number-Letter: Set-Loss Errors (%)", np.df$np_tmtb_seterr, np.df$np_tmtb_seterr.scaled
+      "Number Sequencing: Time", np.df$np_tmta, np.df$np_tmta_sscore,
+      "Number Sequencing: Errors (%)", np.df$np_tmta_seqerr, np.df$np_tmta_cumperc_seqerr,
+      "Number Sequencing: Set-Loss Errors (%)", np.df$np_tmta_seterr, np.df$np_tmta_cumperc_seterr,
+      "Number-Letter: Time", np.df$np_tmtb, np.df$np_tmtb_sscore,
+      "Number-Letter: Sequencing Errors (%)", np.df$np_tmtb_seqerr, np.df$np_tmtb_cumperc_seqerr,
+      "Number-Letter: Set-Loss Errors (%)", np.df$np_tmtb_seterr, np.df$np_tmtb_cumperc_seterr
     ),
     
     dkefs_color.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Color Naming Time", np.df$np_color, np.df$np_color.scaled,
-      "Word Reading Time", np.df$np_word, np.df$np_word.scaled,
-      "Inhibition Time", np.df$np_inhibit, np.df$np_inhibit.scaled
+      "Color Naming Time", np.df$np_color, np.df$np_color_sscore,
+      "Word Reading Time", np.df$np_word, np.df$np_word_sscore,
+      "Inhibition Time", np.df$np_inhibit, np.df$np_inhibit_sscore
     ),
     
     cowa.df = tibble::tribble(
@@ -112,13 +112,13 @@ generate_tables <- function(np.df) {
     
     tower.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score_chr,
-      "Achievement Score", np.df$np_tower, as.character(np.df$np_tower.scaled),
-      "Total Rule Violations (%)", np.df$np_tower_ruleviol, as.character(np.df$np_tower_ruleviol.scaled)
+      "Achievement Score", np.df$np_tower, as.character(np.df$np_tower_sscore),
+      "Total Rule Violations (%)", np.df$np_tower_ruleviol, as.character(np.df$np_tower_ruleviol_cumperc)
     ),
     
     digit_symbol.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Total", np.df$np_digsymb, np.df$np_digsymb.scaled
+      "Total", np.df$np_digsymb, np.df$np_digsymb_sscore
     ),
     
     mc1.df = tibble::tribble(
@@ -138,12 +138,12 @@ generate_tables <- function(np.df) {
       "Item 1-3 Total Score", np.df$np_mc1_3.total, NA,
       "Automatized MC", np.df$np_mc_auto_mc.accuracy.index, NA,
       "Non-Automatized MC", np.df$np_mc_nonauto_mc.accuracy.index, NA,
-      "Kaplan", np.df$np_mc_kaplan, np.df$np_mc_kaplan_ss
+      "Kaplan", np.df$np_mc_kaplan, np.df$np_mc_kaplan_sscore
     ),
     
     symbol_span.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score,
-      "Total Raw Score", np.df$np_symbol, np.df$np_symbol.scaled,
+      "Total Raw Score", np.df$np_symbol, np.df$np_symbol_sscore,
       "# Correct Trials", np.df$np_symbol_trials, NA
     )
   )

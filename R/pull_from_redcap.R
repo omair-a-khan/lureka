@@ -45,7 +45,7 @@ pull_from_redcap <- function(var = np.var, epoch) {
     stop("Epoch must be 1, 2, 3, 4, or 5.\n\n")
   }
   
-  output.df$np_mc_kaplan_ss <- as.character(output.df$np_mc_kaplan_ss)
+  output.df$np_mc_kaplan_sscore <- as.character(output.df$np_mc_kaplan_sscore)
   output.df$epoch <- epoch
   
   return(output.df)

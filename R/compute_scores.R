@@ -42,34 +42,34 @@ compute_scores <- function(data, map_id = NULL) {
     
     ## CVLT-II
     
-    np_cvlt1to5_tscore.z <- (np_cvlt1to5_tscore - 50) / 10
+    np_cvlt1to5_zscore <- (np_cvlt1to5_tscore - 50) / 10
     
     ## Biber
     
-    np_biber1.scaled <- (np_biber1 - 13.7) / 5.9
-    np_biber2.scaled <- (np_biber2 - 20.4) / 7.4
-    np_biber3.scaled <- (np_biber3 - 24.5) / 7
-    np_biber4.scaled <- (np_biber4 - 26.7) / 8.4
-    np_biber5.scaled <- (np_biber5 - 29.6) / 6.8
+    np_biber1_zscore <- (np_biber1 - 13.7) / 5.9
+    np_biber2_zscore <- (np_biber2 - 20.4) / 7.4
+    np_biber3_zscore <- (np_biber3 - 24.5) / 7
+    np_biber4_zscore <- (np_biber4 - 26.7) / 8.4
+    np_biber5_zscore <- (np_biber5 - 29.6) / 6.8
     
     np_biber_t1to5 <- sum(c(np_biber1, np_biber2, np_biber3, np_biber4, np_biber5))
-    np_biber_t1to5.scaled <- (np_biber_t1to5 - 114.5) / 34.7
+    np_biber_t1to5_zscore <- (np_biber_t1to5 - 114.5) / 34.7
     
-    np_biberb.scaled <- (np_biberb - 8.5) / 5
-    np_biber_sd.scaled <- (np_biber_sd - 26.4) / 7
-    np_biber_ld.scaled <- (np_biber_ld - 28) / 7
+    np_biberb_zscore <- (np_biberb - 8.5) / 5
+    np_biber_sd_zscore <- (np_biber_sd - 26.4) / 7
+    np_biber_ld_zscore <- (np_biber_ld - 28) / 7
     
     # Language
     
     ## BNT-30 item (even)
     
-    np_bnt.scaled <- (np_bnt - 26) / 3.4
+    np_bnt_zscore <- (np_bnt - 26) / 3.4
     
     ## Animals
     
     np_anim <- sum(c(np_anim_q1, np_anim_q2, np_anim_q3, np_anim_q4))
     
-    np_anim_tscore.z <- (np_anim_tscore - 50) / 10
+    np_anim_zscore <- (np_anim_tscore - 50) / 10
     
     #! Manual coding of scaled scores
     
@@ -104,60 +104,60 @@ compute_scores <- function(data, map_id = NULL) {
     
     np_hvot.raw <- ifelse(np_hvot > max(np_hvot.lookup$raw), max(np_hvot.lookup$raw), np_hvot) %>%
       floor()
-    np_hvot.scaled <- np_hvot.lookup %>%
+    np_hvot_tscore <- np_hvot.lookup %>%
       filter(age == np_hvot.age & education == np_education & raw == np_hvot.raw) %>%
       pull(scaled)
     
-    np_hvot.scaled.z <- (np_hvot.scaled - 50) / 10
+    np_hvot_zscore <- (np_hvot_tscore - 50) / 10
     
     # Attention/Executive Functioning/Information Processing
     
     ## DKEFS: Trail Making Test
     
     np_tmta.raw <- ifelse(np_tmta > max(np_tmta.lookup$raw), max(np_tmta.lookup$raw), np_tmta)
-    np_tmta.scaled <- np_tmta.lookup %>%
+    np_tmta_sscore <- np_tmta.lookup %>%
       filter(age == np_age & raw == np_tmta.raw) %>%
       pull(scaled)
     
     np_tmta_seqerr.raw <- ifelse(np_tmta_seqerr > max(np_tmta_seqerr.lookup$raw), max(np_tmta_seqerr.lookup$raw), np_tmta_seqerr)
-    np_tmta_seqerr.scaled <- np_tmta_seqerr.lookup %>%
+    np_tmta_cumperc_seqerr <- np_tmta_seqerr.lookup %>%
       filter(age == np_age & raw == np_tmta_seqerr.raw) %>%
       pull(scaled)
     
     np_tmta_seterr.raw <- ifelse(np_tmta_seterr > max(np_tmta_seterr.lookup$raw), max(np_tmta_seterr.lookup$raw), np_tmta_seterr)
-    np_tmta_seterr.scaled <- np_tmta_seterr.lookup %>%
+    np_tmta_cumperc_seterr <- np_tmta_seterr.lookup %>%
       filter(age == np_age & raw == np_tmta_seterr.raw) %>%
       pull(scaled)
     
     np_tmtb.raw <- ifelse(np_tmtb > max(np_tmtb.lookup$raw), max(np_tmtb.lookup$raw), np_tmtb)
-    np_tmtb.scaled <- np_tmtb.lookup %>%
+    np_tmtb_sscore <- np_tmtb.lookup %>%
       filter(age == np_age & raw == np_tmtb.raw) %>%
       pull(scaled)
     
     np_tmtb_seqerr.raw <- ifelse(np_tmtb_seqerr > max(np_tmtb_seqerr.lookup$raw), max(np_tmtb_seqerr.lookup$raw), np_tmtb_seqerr)
-    np_tmtb_seqerr.scaled <- np_tmtb_seqerr.lookup %>%
+    np_tmtb_cumperc_seqerr <- np_tmtb_seqerr.lookup %>%
       filter(age == np_age & raw == np_tmtb_seqerr.raw) %>%
       pull(scaled)
     
     np_tmtb_seterr.raw <- ifelse(np_tmtb_seterr > max(np_tmtb_seterr.lookup$raw), max(np_tmtb_seterr.lookup$raw), np_tmtb_seterr)
-    np_tmtb_seterr.scaled <- np_tmtb_seterr.lookup %>%
+    np_tmtb_cumperc_seterr <- np_tmtb_seterr.lookup %>%
       filter(age == np_age & raw == np_tmtb_seterr.raw) %>%
       pull(scaled)
     
     ## DKEFS: Color-Word
     
     np_color.raw <- ifelse(np_color > max(np_color.lookup$raw), max(np_color.lookup$raw), np_color)
-    np_color.scaled <- np_color.lookup %>%
+    np_color_sscore <- np_color.lookup %>%
       filter(age == np_age & raw == np_color.raw) %>%
       pull(scaled)
     
     np_word.raw <- ifelse(np_word > max(np_word.lookup$raw), max(np_word.lookup$raw), np_word)
-    np_word.scaled <- np_word.lookup %>%
+    np_word_sscore <- np_word.lookup %>%
       filter(age == np_age & raw == np_word.raw) %>%
       pull(scaled)
     
     np_inhibit.raw <- ifelse(np_inhibit > max(np_inhibit.lookup$raw), max(np_inhibit.lookup$raw), np_inhibit)
-    np_inhibit.scaled <- np_inhibit.lookup %>%
+    np_inhibit_sscore <- np_inhibit.lookup %>%
       filter(age == np_age & raw == np_inhibit.raw) %>%
       pull(scaled)
     
@@ -170,23 +170,23 @@ compute_scores <- function(data, map_id = NULL) {
     ## Tower Test
     
     np_tower <- sum(c(
-      np_tower01, np_tower02, np_tower03, np_tower04, np_tower05, 
-      np_tower06, np_tower07, np_tower08, np_tower09
+      np_tower1, np_tower2, np_tower3, np_tower4, np_tower5, 
+      np_tower6, np_tower7, np_tower8, np_tower9
     ))
     
-    np_tower.scaled <- np_tower.lookup %>%
+    np_tower_sscore <- np_tower.lookup %>%
       filter(age == np_age & raw == np_tower) %>%
       pull(scaled)
     
     np_tower_ruleviol.raw <- ifelse(np_tower_ruleviol > max(np_tower_ruleviol.lookup$raw), max(np_tower_ruleviol.lookup$raw), np_tower_ruleviol)
-    np_tower_ruleviol.scaled <- np_tower_ruleviol.lookup %>%
+    np_tower_ruleviol_cumperc <- np_tower_ruleviol.lookup %>%
       filter(age == np_age & raw == np_tower_ruleviol.raw) %>%
       pull(scaled)
     
     ## Digit Symbol Coding
     
     np_digsymb.raw <- ifelse(np_digsymb > max(np_digsymb.lookup$raw), max(np_digsymb.lookup$raw), np_digsymb)
-    np_digsymb.scaled <- np_digsymb.lookup %>%
+    np_digsymb_sscore <- np_digsymb.lookup %>%
       filter(age == np_age & raw == np_digsymb.raw) %>%
       pull(scaled)
     
@@ -217,7 +217,7 @@ compute_scores <- function(data, map_id = NULL) {
     # WMS-IV Symbol Span
     
     np_symbol.raw <- ifelse(np_symbol > max(np_symbol.lookup$raw), max(np_symbol.lookup$raw), np_symbol)
-    np_symbol.scaled <- np_symbol.lookup %>%
+    np_symbol_sscore <- np_symbol.lookup %>%
       filter(age == np_age & raw == np_symbol.raw) %>%
       pull(scaled)
     
