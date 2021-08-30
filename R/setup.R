@@ -14,6 +14,8 @@ library(readxl)
 # =========================================================================
 # source scripts
 
+source("R/pivot_functions.R")
+
 lookup_tables.sources <- list.files(path = "data-raw", pattern = "*.R", full.names = TRUE)
 purrr::walk(lookup_tables.sources, source)
 
