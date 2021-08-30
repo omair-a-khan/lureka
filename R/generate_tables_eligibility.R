@@ -27,7 +27,7 @@ generate_tables_eligibility <- function(np.df) {
       "Total", np.df$np_moca, np.df$np_moca.interpretation
     ),
     
-    cdr.df = tibble::tribble( # variable?
+    cdr.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
       "Total", np.df$cdr_score, np.df$cdr_score.interpretation,
       "Sum of Scores", np.df$cdr_sum, NA
@@ -125,9 +125,10 @@ generate_tables_eligibility <- function(np.df) {
       ~ item, ~ score, ~ interpretation,
       "Total", np.df$faq, NA # variable?
     ),
+    
     gds.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$np_gds, np.df$np_gds.interpretation # variable?
+      "Total", np.df$np_gds, np.df$np_gds.interpretation
     )
   )
   

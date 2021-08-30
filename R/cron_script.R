@@ -7,6 +7,7 @@ source("R/variables_and_labels.R")
 source("R/pivot_functions.R")
 
 lookup_tables.sources <- list.files(path = "data-raw", pattern = "*.R", full.names = TRUE)
+lookup_tables.sources <- lookup_tables.sources[grep("enrollment|eligibility", lookup_tables.sources, invert = T)]
 purrr::walk(lookup_tables.sources, source)
 
 source("R/redcap_tokens.R")

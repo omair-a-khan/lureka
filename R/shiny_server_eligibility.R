@@ -136,6 +136,12 @@ server <- shinyServer(
         kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
     }
     
+    output$gds.df <- function(){
+      reac_tables.list()[["gds.df"]] %>%
+        knitr::kable(., digits = 1, align = 'lrr') %>% 
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+    }
+    
     # generate np_notes
     
     output$np_notes.str <- function(){

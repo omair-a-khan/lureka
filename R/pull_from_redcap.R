@@ -1,3 +1,5 @@
+# main data
+
 download_redcap_data <- function(token, var = np.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
   data_part1.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
@@ -51,9 +53,32 @@ pull_from_redcap <- function(var = np.var, epoch) {
   return(output.df)
 }
 
-pull_from_redcap_eligibility <- function(var = np.var, epoch) {
-  output.df <- download_redcap_data(token = redcap_tokens.df[redcap_tokens.df$epoch == "elig", "token"])
-  output.df$epoch <- epoch
+# eligibility
+
+download_redcap_data_eligibility <- function(token, var = np_eligibility.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
+  data_part1.df <- REDCapR::redcap_read_oneshot(
+    redcap_uri = api_uri,
+    token = token,
+    fields = var[!var %in% np_label.var],
+    raw_or_label = "raw",
+    verbose = FALSE
+  )$data
+  
+  data_part2.df <- REDCapR::redcap_read_oneshot(
+    redcap_uri = api_uri,
+    token = token,
+    fields = c("vmac_id", np_label.var),
+    raw_or_label = "label",
+    verbose = FALSE
+  )$data
+  
+  data.df <- left_join(data_part1.df, data_part2.df, by = "vmac_id")
+  
+  return(data.df)
+}
+
+pull_from_redcap_eligibility <- function(var = np_eligibility.var) {
+  output.df <- download_redcap_data_eligibility(token = redcap_tokens_eligibility.df[redcap_tokens_eligibility.df$epoch == "elig", "token"], var = var)
   
   return(output.df)
 }

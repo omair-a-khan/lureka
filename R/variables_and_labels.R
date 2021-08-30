@@ -235,6 +235,47 @@ np_main.var <- c(
 
 np_addendum.var <- c("map_id", np.var[!np.var %in% np_main.var])
 
+np_eligibility.var <- c(
+  "vmac_id",
+  "age",
+  "education",
+  "np_date",
+  "np_examiner",
+  "ethnicity",
+  "race",
+  "sex",
+  "np_moca",
+  "np_srt1",
+  "np_srt2",
+  "np_srt3",
+  "np_srt4",
+  "np_srt5",
+  "np_srt6",
+  "np_srt_ldfr",
+  "np_srt_recog",
+  "np_srt_intrus",
+  "np_bvrt",
+  "np_digitsf",
+  "np_digitsb",
+  "np_digitsf_span",
+  "np_digitsb_span",
+  "np_rey_recall",
+  "np_rey_hits",
+  "np_rey_falsepos",
+  "np_wrat",
+  "np_blocks",
+  "np_bnt",
+  "np_veg",
+  "np_tmta",
+  "np_tmtb",
+  "np_strp_word",
+  "np_strp_color",
+  "np_strp_colorword",
+  "np_cfl_c",
+  "np_cfl_f",
+  "np_cfl_l"
+)
+
 # =========================================================================
 # CVLT variables and labels
 
