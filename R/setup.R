@@ -14,16 +14,7 @@ library(readxl)
 # =========================================================================
 # source scripts
 
-source("R/pivot_functions.R")
-
-lookup_tables.sources <- list.files(path = "data-raw", pattern = "*.R", full.names = TRUE)
-purrr::walk(lookup_tables.sources, source)
-
 source("R/variables_and_labels.R")
-source("R/redcap_tokens.R")
-source("R/pull_from_redcap.R")
-source("R/compute_scores.R")
-source("R/generate_data.R")
 source("R/generate_tables.R")
 source("R/plotly_functions.R")
 
@@ -35,5 +26,12 @@ if ("complete_np_data.rds" %in% list.files("data")) {
 } else {
   source("R/cron_script.R")
   complete_np_data.df <- readRDS("data/complete_np_data.rds")
+}
+
+if ("complete_eligibility_data.rds" %in% list.files("data")) {
+  complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
+} else {
+  source("R/cron_script_eligibility.R")
+  complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
 }
 
