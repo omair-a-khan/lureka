@@ -9,7 +9,7 @@ source("R/redcap_tokens.R")
 source("R/pull_from_redcap.R")
 source("R/compute_scores_eligibility.R")
 source("R/generate_data.R")
-source("data/eligibility_lookup.R")
+source("data-raw/eligibility_lookup.R")
 
 data.df <- generate_data_from_redcap_eligibility()
 saveRDS(data.df, file = file.path("data/complete_eligibility_data.rds"))
