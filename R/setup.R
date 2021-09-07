@@ -16,6 +16,7 @@ library(readxl)
 
 source("R/variables_and_labels.R")
 source("R/generate_tables.R")
+source("R/generate_tables_eligibility.R")
 source("R/plotly_functions.R")
 
 # =========================================================================
@@ -28,10 +29,10 @@ if ("complete_np_data.rds" %in% list.files("data")) {
   complete_np_data.df <- readRDS("data/complete_np_data.rds")
 }
 
-if ("complete_eligibility_data.rds" %in% list.files("data")) {
-  complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
-} else {
-  source("R/cron_script_eligibility.R")
-  complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
-}
+# if ("complete_eligibility_data.rds" %in% list.files("data")) {
+#   complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
+# } else {
+#   source("R/cron_script_eligibility.R")
+#   complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
+# }
 
