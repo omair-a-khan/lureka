@@ -1,4 +1,4 @@
-generate_tables_eligibility <- function(np.df) {
+generate_tables <- function(np.df) {
   tables.list <- list(
     metadata.df = tibble::tribble(
       ~ item, ~ value,

@@ -1,4 +1,4 @@
-eligibility_lookup_excel.file <- "data-raw/eligibility_lookup.xlsx"
+eligibility_lookup_excel.file <- "eligibility/data-raw/eligibility_lookup.xlsx"
 
 eligibility_block_design.lookup <- readxl::read_xlsx(eligibility_lookup_excel.file, sheet = "block_design") %>%
   pivot_raw_across_scale_num()

@@ -1,4 +1,4 @@
-enrollment_lookup_excel.file <- "data-raw/enrollment_lookup.xlsx"
+enrollment_lookup_excel.file <- "enrollment/data-raw/enrollment_lookup.xlsx"
 
 enrollment_tower_achievement.lookup <- readxl::read_xlsx(enrollment_lookup_excel.file, sheet = "tower_achievement") %>%
   pivot_age_across_scale_num()

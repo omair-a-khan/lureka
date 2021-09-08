@@ -30,7 +30,7 @@ server <- shinyServer(
     # generate tables for summary sheet
     
     reac_tables.list <- reactive({
-      tables.list <- generate_tables_eligibility(reac_participant_data.df())
+      tables.list <- generate_tables(reac_participant_data.df())
       return(tables.list)
     })
     

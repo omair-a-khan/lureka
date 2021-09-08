@@ -1,4 +1,4 @@
-compute_scores_eligibility <- function(data, vmac_id = NULL) {
+compute_scores <- function(data, vmac_id = NULL) {
   
   if (is.null(vmac_id)) {
     np.df = data

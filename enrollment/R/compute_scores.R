@@ -1,4 +1,4 @@
-compute_scores_enrollment <- function(data, map_id = NULL) {
+compute_scores <- function(data, map_id = NULL) {
   if (is.null(map_id)) {
     np.df <- data
   } else {

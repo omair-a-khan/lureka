@@ -3,6 +3,7 @@
 .Rhistory
 .RData
 .Ruserdata
-R/redcap_tokens.R
-data/complete_np_data.rds
-data/complete_eligibility_data.rds
+common/redcap_tokens.R
+main/data/complete_np_data.rds
+eligibility/data/complete_eligibility_data.rds
+enrollment/data/complete_enrollment_data.rds
