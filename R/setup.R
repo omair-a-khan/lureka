@@ -36,3 +36,10 @@ if ("complete_eligibility_data.rds" %in% list.files("data")) {
   complete_eligibility_data.df <- readRDS("data/complete_eligibility_data.rds")
 }
 
+if ("complete_enrollment_data.rds" %in% list.files("data")) {
+  complete_enrollment_data.df <- readRDS("data/complete_enrollment_data.rds")
+} else {
+  source("R/cron_script_eligibility.R")
+  complete_enrollment_data.df <- readRDS("data/complete_enrollment_data.rds)
+}
+

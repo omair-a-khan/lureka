@@ -46,7 +46,7 @@ pull_from_redcap <- function(var = np.var, epoch) {
   } else {
     stop("Epoch must be 1, 2, 3, 4, or 5.\n\n")
   }
-  
+
   output.df$np_mc_kaplan_sscore <- as.character(output.df$np_mc_kaplan_sscore)
   output.df$epoch <- epoch
   
@@ -79,6 +79,36 @@ download_redcap_data_eligibility <- function(token, var = np_eligibility.var, ap
 
 pull_from_redcap_eligibility <- function(var = np_eligibility.var) {
   output.df <- download_redcap_data_eligibility(token = redcap_tokens_eligibility.df[redcap_tokens_eligibility.df$epoch == "elig", "token"], var = var)
+  
+  return(output.df)
+}
+
+# enrollment
+
+download_redcap_data_enrollment <- function(token, var = np.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
+  data_part1.df <- REDCapR::redcap_read_oneshot(
+    redcap_uri = api_uri,
+    token = token,
+    fields = var[!var %in% np_label.var],
+    raw_or_label = "raw",
+    verbose = FALSE
+  )$data
+  
+  data_part2.df <- REDCapR::redcap_read_oneshot(
+    redcap_uri = api_uri,
+    token = token,
+    fields = c("vmac_id", np_label.var),
+    raw_or_label = "label",
+    verbose = FALSE
+  )$data
+  
+  data.df <- left_join(data_part1.df, data_part2.df, by = "vmac_id")
+  
+  return(data.df)
+}
+
+pull_from_redcap_enrollment <- function(var = np.var) {
+  output.df <- download_redcap_data_enrollment(token = redcap_tokens_enrollment.df[redcap_tokens_enrollment.df$epoch == "enrol", "token"], var = var)
   
   return(output.df)
 }
