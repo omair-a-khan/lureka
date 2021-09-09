@@ -14,17 +14,17 @@ library(readxl)
 # =========================================================================
 # source scripts
 
-source("common/R/plotly_functions.R")
-source("common/R/variables_and_labels.R")
+source("common/plotly_functions.R")
+source("common/variables_and_labels.R")
 source("enrollment/R/generate_tables.R")
 
 # =========================================================================
 # load data
 
-if ("complete_enrollment_data.rds" %in% list.files("data")) {
+if ("complete_enrollment_data.rds" %in% list.files("enrollment/data")) {
   complete_enrollment_data.df <- readRDS("enrollment/data/complete_enrollment_data.rds")
 } else {
-  source("enrollment/R/cron_script_enrollment.R")
+  source("enrollment/R/cron_script.R")
   complete_enrollment_data.df <- readRDS("enrollment/data/complete_enrollment_data.rds)
 }
 

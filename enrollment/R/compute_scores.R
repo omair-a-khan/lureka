@@ -21,8 +21,8 @@ compute_scores <- function(data, map_id = NULL) {
   np.df[np.df == -8888] <- NA
   np.df[np.df == -9999] <- NA
   
-  np.df$np_age = age
-  np.df$np_education = education
+  np.df$np_age = np.df$age
+  np.df$np_education = np.df$education
   
   # Global Cognition
   
