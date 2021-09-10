@@ -3,6 +3,12 @@
 # from REDCap. It is intended to be run regularly as a cron job. This script
 # can also be invoked on demand to update the data.
 
+library(knitr)
+library(tidyverse)
+library(readxl)
+library(kableExtra)
+library(REDCapR)
+
 source("common/variables_and_labels.R")
 source("common/pivot_functions.R")
 source("common/redcap_tokens.R")
