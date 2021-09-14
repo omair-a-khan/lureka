@@ -4,7 +4,7 @@ server <- shinyServer(
     # create reactive data
     
     reac_specific_data.df <- reactive({
-      data.df <- complete_enrollment_data.df[complete_enrollment_data.df$map_id %in% input$map_id, ]
+      data.df <- complete_epoch5dde_data.df[complete_epoch5dde_data.df$map_id %in% input$map_id, ]
       return(data.df)
     })
     
@@ -12,7 +12,7 @@ server <- shinyServer(
     # update MAP ID choices for selectInput("map_id", ...)
     
     map_id_in_input = reactive({
-      return(complete_enrollment_data.df[complete_enrollment_data.df$epoch %in% input$epoch, "map_id"])
+      return(complete_epoch5dde_data.df[complete_epoch5dde_data.df$epoch %in% input$epoch, "map_id"])
     })
     
     observe({

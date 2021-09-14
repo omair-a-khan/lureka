@@ -85,30 +85,42 @@ pull_from_redcap_eligibility <- function(var = np_eligibility.var) {
 
 # enrollment
 
-download_redcap_data_enrollment <- function(token, var = np.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
-  data_part1.df <- REDCapR::redcap_read_oneshot(
+#download_redcap_data_enrollment <- function(token, var = np.var, api_uri = "https://redcap.vanderbilt.edu/api/") {
+download_redcap_data_epoch5dde <- function(api_uri = "https://redcap.vanderbilt.edu/api/") {
+  data_part1a.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
-    token = token,
-    fields = var[!var %in% np_label.var],
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", token],
+    fields = c('map_id', np_epoch5dde_1.var[np_epoch5dde_1.var %in% np_label.var]),
+    raw_or_label = "label",
+    verbose = FALSE
+  )$data
+  
+  data_part1b.df <- REDCapR::redcap_read_oneshot(
+    redcap_uri = api_uri,
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", token],
+    fields = np_epoch5dde_1.var[!np_epoch5dde_1.var %in% np_label.var],
     raw_or_label = "raw",
     verbose = FALSE
   )$data
   
   data_part2.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
-    token = token,
-    fields = c("vmac_id", np_label.var),
-    raw_or_label = "label",
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_2", token],
+    fields = np_epoch5dde_2.var,
+    raw_or_label = "raw",
     verbose = FALSE
   )$data
   
-  data.df <- left_join(data_part1.df, data_part2.df, by = "vmac_id")
+  data_part2.df <- data_part2.df[data_part2.df$redcap_event_name == "7year_followup_arm_1", ]
+
+  data_part1.df <- left_join(data_part1a.df, data_part1b.df, by = "map_id")
+  data.df <- left_join(data_part1.df, data_part2.df, by = "map_id")
   
   return(data.df)
 }
 
-pull_from_redcap_enrollment <- function(var = np.var) {
-  output.df <- download_redcap_data_enrollment(token = redcap_tokens_enrollment.df[redcap_tokens_enrollment.df$epoch == "enrol", "token"], var = var)
+pull_from_redcap_epoch5dde <- function() {
+  output.df <- download_redcap_data_epoch5dde()
   
   return(output.df)
 }
