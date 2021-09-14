@@ -89,7 +89,7 @@ pull_from_redcap_eligibility <- function(var = np_eligibility.var) {
 download_redcap_data_epoch5dde <- function(api_uri = "https://redcap.vanderbilt.edu/api/") {
   data_part1a.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
-    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", token],
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", "token"],
     fields = c('map_id', np_epoch5dde_1.var[np_epoch5dde_1.var %in% np_label.var]),
     raw_or_label = "label",
     verbose = FALSE
@@ -97,7 +97,7 @@ download_redcap_data_epoch5dde <- function(api_uri = "https://redcap.vanderbilt.
   
   data_part1b.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
-    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", token],
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_1", "token"],
     fields = np_epoch5dde_1.var[!np_epoch5dde_1.var %in% np_label.var],
     raw_or_label = "raw",
     verbose = FALSE
@@ -105,7 +105,7 @@ download_redcap_data_epoch5dde <- function(api_uri = "https://redcap.vanderbilt.
   
   data_part2.df <- REDCapR::redcap_read_oneshot(
     redcap_uri = api_uri,
-    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_2", token],
+    token = redcap_tokens_epoch5dde.df[redcap_tokens_epoch5dde.df$name == "epoch5dde_2", "token"],
     fields = np_epoch5dde_2.var,
     raw_or_label = "raw",
     verbose = FALSE
