@@ -67,7 +67,12 @@ server <- shinyServer(
     output$srt.df <- function(){
       reac_tables.list()[["srt.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["srt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["srt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$bvrt.df <- function(){
@@ -79,7 +84,12 @@ server <- shinyServer(
     output$digit_span.df <- function(){
       reac_tables.list()[["digit_span.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["digit_span.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["digit_span.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$rey15.df <- function(){
@@ -91,7 +101,12 @@ server <- shinyServer(
     output$wrat3_reading.df <- function(){
       reac_tables.list()[["wrat3_reading.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:4, 
+          color = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score <= 77.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score <= 77.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$block_design.df <- function(){
@@ -115,19 +130,34 @@ server <- shinyServer(
     output$trail.df <- function(){
       reac_tables.list()[["trail.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["trail.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["trail.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$stroop.df <- function(){
       reac_tables.list()[["stroop.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+      column_spec(
+        1:3, 
+        color = replace_na(ifelse(abs(reac_tables.list()[["stroop.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+        italic = replace_na(ifelse(abs(reac_tables.list()[["stroop.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+      )
     }
     
     output$cowa.df <- function(){
       reac_tables.list()[["cowa.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["cowa.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["cowa.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$faq.df <- function(){
@@ -139,7 +169,12 @@ server <- shinyServer(
     output$gds.df <- function(){
       reac_tables.list()[["gds.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(tables.list[["gds.df"]]$score >= 10, "red", "black"), "black"),
+          italic = replace_na(ifelse(tables.list[["gds.df"]]$score >= 10, TRUE, FALSE), FALSE)
+        )
     }
     
     # generate np_notes
