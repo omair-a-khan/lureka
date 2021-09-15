@@ -8,6 +8,7 @@ library(tidyverse)
 library(readxl)
 library(kableExtra)
 library(REDCapR)
+library(Hmisc)
 
 source("common/variables_and_labels.R")
 source("common/pivot_functions.R")
