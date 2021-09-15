@@ -25,6 +25,5 @@ if ("complete_epoch5dde_data.rds" %in% list.files("epoch5dde/data")) {
   complete_epoch5dde_data.df <- readRDS("epoch5dde/data/complete_epoch5dde_data.rds")
 } else {
   source("epoch5dde/R/cron_script.R")
-  complete_epoch5dde_data.df <- readRDS("epoch5dde/data/complete_epoch5dde_data.rds)
+  complete_epoch5dde_data.df <- readRDS("epoch5dde/data/complete_epoch5dde_data.rds")
 }
-

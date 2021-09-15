@@ -314,7 +314,7 @@ np_epoch5dde_output.var <- Cs(
     np_moca_interpretation, np_cvlt1to5_zscore, np_biber1_zscore, 
     np_biber2_zscore, np_biber3_zscore, np_biber4_zscore, np_biber5_zscore, 
     np_biber_t1to5, np_biber_t1to5_zscore, np_biberb_zscore, np_biber_sd_zscore, np_biber_ld_zscore, 
-    np_cvlt1to5_zscore, np_bnt_zscore, np_anim, np_anim_zscore, 
+    np_bnt_zscore, np_anim, np_anim_zscore, 
     np_gds, np_gds_interpretation, np_hvot_tscore, np_hvot_zscore, 
     np_tmta_sscore, np_tmta_cumperc_seqerr, np_tmta_cumperc_seterr, 
     np_tmtb_sscore, np_tmtb_cumperc_seqerr, np_tmtb_cumperc_seterr, 

@@ -4,7 +4,7 @@ header <- dashboardHeader(
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    selectInput("epoch", "Epoch", unique(complete_epoch5dde_data.df$epoch)),
+    selectInput("epoch", "Epoch", 5),
     selectInput("map_id", "MAP ID", ""),
     hr(),
     menuItem("Summary Sheet", tabName = "summary_sheet", icon = icon("columns")),

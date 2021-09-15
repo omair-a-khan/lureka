@@ -2,7 +2,7 @@ generate_tables <- function(np.df) {
   tables.list <- list(
     metadata.df = tibble::tribble(
       ~ item, ~ value,
-      "Epoch", as.character(np.df$epoch),
+      "Epoch", as.character(5),
       "MAP ID", as.character(np.df$map_id),
       "VMAC ID", as.character(np.df$vmac_id),
       "Age", as.character(np.df$age),
@@ -17,14 +17,14 @@ generate_tables <- function(np.df) {
     metadata_wide.df = tibble::tribble(
       ~ a, ~ b, ~ c, ~ d, ~ e,
       "Epoch", "MAP ID", "VMAC ID", "Testing Date", "Examiner",
-      as.character(np.df$epoch), as.character(np.df$map_id), as.character(np.df$vmac_id), as.character(np.df$np_date), as.character(np.df$np_examiner),
+      as.character(5), as.character(np.df$map_id), as.character(np.df$vmac_id), as.character(np.df$np_date), as.character(np.df$np_examiner),
       "Age", "Sex", "Education", "Race", "Ethnicity",
       as.character(np.df$age), as.character(np.df$sex), as.character(np.df$education), as.character(np.df$race), as.character(np.df$ethnicity)
     ),
     
     moca.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$np_moca, np.df$np_moca.interpretation
+      "Total", np.df$np_moca, np.df$np_moca_interpretation
     ),
     
     cvlt.df = tibble::tribble(
@@ -75,7 +75,7 @@ generate_tables <- function(np.df) {
     
     gds.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$np_gds, np.df$np_gds.interpretation
+      "Total", np.df$np_gds, np.df$np_gds_interpretation
     ),
     
     hvot.df = tibble::tribble(
@@ -123,21 +123,21 @@ generate_tables <- function(np.df) {
     
     mc1.df = tibble::tribble(
       ~ item, ~ time, ~ omissions, ~ false_positives, ~ accuracy_index,
-      "Item 1", np.df$np_mc1_time, np.df$np_mc1_omissions, np.df$np_mc1_falsepos, np.df$np_mc1.accuracy.index,
-      "Item 2", np.df$np_mc2_time, np.df$np_mc2_omissions, np.df$np_mc2_falsepos, np.df$np_mc2.accuracy.index,
-      "Item 3", np.df$np_mc3_time, np.df$np_mc3_omissions, np.df$np_mc3_falsepos, np.df$np_mc3.accuracy.index,
-      "Item 4", np.df$np_mc4_time, np.df$np_mc4_omissions, np.df$np_mc4_falsepos, np.df$np_mc4.accuracy.index,
-      "Item 5", np.df$np_mc5_time, np.df$np_mc5_omissions, np.df$np_mc5_falsepos, np.df$np_mc5.accuracy.index,
-      "Item 6", np.df$np_mc6_time, np.df$np_mc6_omissions, np.df$np_mc6_falsepos, np.df$np_mc6.accuracy.index,
-      "Item 7", np.df$np_mc7_time, np.df$np_mc7_omissions, np.df$np_mc7_falsepos, np.df$np_mc7.accuracy.index,
-      "Item 8", np.df$np_mc8_time, np.df$np_mc8_omissions, np.df$np_mc8_falsepos, np.df$np_mc8.accuracy.index
+      "Item 1", np.df$np_mc1_time, np.df$np_mc1_omissions, np.df$np_mc1_falsepos, np.df$np_mc1_accuracy_index,
+      "Item 2", np.df$np_mc2_time, np.df$np_mc2_omissions, np.df$np_mc2_falsepos, np.df$np_mc2_accuracy_index,
+      "Item 3", np.df$np_mc3_time, np.df$np_mc3_omissions, np.df$np_mc3_falsepos, np.df$np_mc3_accuracy_index,
+      "Item 4", np.df$np_mc4_time, np.df$np_mc4_omissions, np.df$np_mc4_falsepos, np.df$np_mc4_accuracy_index,
+      "Item 5", np.df$np_mc5_time, np.df$np_mc5_omissions, np.df$np_mc5_falsepos, np.df$np_mc5_accuracy_index,
+      "Item 6", np.df$np_mc6_time, np.df$np_mc6_omissions, np.df$np_mc6_falsepos, np.df$np_mc6_accuracy_index,
+      "Item 7", np.df$np_mc7_time, np.df$np_mc7_omissions, np.df$np_mc7_falsepos, np.df$np_mc7_accuracy_index,
+      "Item 8", np.df$np_mc8_time, np.df$np_mc8_omissions, np.df$np_mc8_falsepos, np.df$np_mc8_accuracy_index
     ),
     
     mc2.df = tibble::tribble(
       ~ item, ~ score, ~ scaled_score_chr,
-      "Item 1-3 Total Score", np.df$np_mc1_3.total, NA,
-      "Automatized MC", np.df$np_mc_auto_mc.accuracy.index, NA,
-      "Non-Automatized MC", np.df$np_mc_nonauto_mc.accuracy.index, NA,
+      "Item 1-3 Total Score", np.df$np_mc1_3_total, NA,
+      "Automatized MC", np.df$np_mc_auto_mc_accuracy_index, NA,
+      "Non-Automatized MC", np.df$np_mc_nonauto_mc_accuracy_index, NA,
       "Kaplan", np.df$np_mc_kaplan, np.df$np_mc_kaplan_sscore
     ),
     
