@@ -1,6 +1,7 @@
 # =========================================================================
 # load libraries
 
+library(Hmisc)
 library(shiny)
 library(shinydashboard)
 library(knitr)
