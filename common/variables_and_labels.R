@@ -310,20 +310,20 @@ np_epoch5dde_2.var <- c("map_id", "vmac_id", "np_cvlt1", "np_cvlt2", "np_cvlt3",
   "gds22", "gds23", "gds24", "gds25", "gds26", "gds27", "gds28", 
   "gds29", "gds30")
 
-np_epoch5dde_output.var <- Cs(
-    np_moca_interpretation, np_cvlt1to5_zscore, np_biber1_zscore, 
-    np_biber2_zscore, np_biber3_zscore, np_biber4_zscore, np_biber5_zscore, 
-    np_biber_t1to5, np_biber_t1to5_zscore, np_biberb_zscore, np_biber_sd_zscore, np_biber_ld_zscore, 
-    np_bnt_zscore, np_anim, np_anim_zscore, 
-    np_gds, np_gds_interpretation, np_hvot_tscore, np_hvot_zscore, 
-    np_tmta_sscore, np_tmta_cumperc_seqerr, np_tmta_cumperc_seterr, 
-    np_tmtb_sscore, np_tmtb_cumperc_seqerr, np_tmtb_cumperc_seterr, 
-    np_color_sscore, np_word_sscore, np_inhibit_sscore, 
-    np_fas, np_fas_zscore, np_tower, np_tower_sscore, np_tower_ruleviol_cumperc, 
-    np_digsymb_sscore, np_mc1_accuracy_index, np_mc2_accuracy_index, np_mc3_accuracy_index,
-    np_mc4_accuracy_index, np_mc5_accuracy_index, np_mc6_accuracy_index, np_mc7_accuracy_index, 
-    np_mc8_accuracy_index, np_mc1_3_total, np_mc_auto_mc_accuracy_index, np_mc_nonauto_mc_accuracy_index, 
-    np_symbol_sscore
+np_epoch5dde_output.var <- c(
+  "np_moca_interpretation", "np_cvlt1to5_zscore", "np_biber1_zscore", 
+  "np_biber2_zscore", "np_biber3_zscore", "np_biber4_zscore", "np_biber5_zscore", 
+  "np_biber_t1to5", "np_biber_t1to5_zscore", "np_biberb_zscore", "np_biber_sd_zscore", "np_biber_ld_zscore", 
+  "np_bnt_zscore", "np_anim", "np_anim_zscore", 
+  "np_gds", "np_gds_interpretation", "np_hvot_tscore", "np_hvot_zscore", 
+  "np_tmta_sscore", "np_tmta_cumperc_seqerr", "np_tmta_cumperc_seterr", 
+  "np_tmtb_sscore", "np_tmtb_cumperc_seqerr", "np_tmtb_cumperc_seterr", 
+  "np_color_sscore", "np_word_sscore", "np_inhibit_sscore", 
+  "np_fas", "np_fas_zscore", "np_tower", "np_tower_sscore", "np_tower_ruleviol_cumperc", 
+  "np_digsymb_sscore", "np_mc1_accuracy_index", "np_mc2_accuracy_index", "np_mc3_accuracy_index",
+  "np_mc4_accuracy_index", "np_mc5_accuracy_index", "np_mc6_accuracy_index", "np_mc7_accuracy_index", 
+  "np_mc8_accuracy_index", "np_mc1_3_total", "np_mc_auto_mc_accuracy_index", "np_mc_nonauto_mc_accuracy_index", 
+  "np_symbol_sscore"
 )
 
 # =========================================================================
