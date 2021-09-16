@@ -104,13 +104,21 @@ compute_scores <- function(data, map_id = NULL) {
   )
   
   np.df$np_hvot.raw <- ifelse(np.df$np_hvot > max(epoch5dde_hvot.lookup$raw), max(np.df$np_hvot.lookup$raw), np.df$np_hvot) %>%
-    floor()
-  np.df$np_hvot_tscore <- if (is.na(np.df$np_hvot.raw)) {
+    ceiling()
+  np.df$np_hvot.corrected <- if (is.na(np.df$np_hvot.raw)) {
     NA
   } else {
     epoch5dde_hvot.lookup %>%
       filter(age == np.df$np_hvot.age & education == np.df$np_education & raw == np.df$np_hvot.raw) %>%
       pull(scaled)
+  }
+  
+  np.df$np_hvot_tscore <- if (is.na(np.df$np_hvot.corrected)) {
+    NA
+  } else {
+    epoch5dde_hvot_tscore.lookup %>%
+      filter(raw == np.df$np_hvot.corrected) %>%
+      pull(tscore)
   }
   
   np.df$np_hvot_zscore <- (np.df$np_hvot_tscore - 50) / 10
@@ -264,7 +272,7 @@ compute_scores <- function(data, map_id = NULL) {
   )
   
   np.df$np_mc_nonauto_mc_accuracy_index <- mean(
-    c(np.df$np_mc5_accuracy_index, np.df$np_mc6_accuracy_index, np.df$np_mc7_accuracy_index), 
+    c(np.df$np_mc5_accuracy_index, np.df$np_mc6_accuracy_index, np.df$np_mc7_accuracy_index, np.df$np_mc8_accuracy_index), 
     na.rm = FALSE
   )
   
