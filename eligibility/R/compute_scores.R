@@ -81,7 +81,7 @@ compute_scores <- function(data, vmac_id = NULL) {
     filter(age == np.df$np_age & raw == np.df$np_bvrt_education) %>%
     pull(scaled)
   
-  np.df$np_bvrt_zscore = (np.df$np_bvrt.lookup - np.df$np_bvrt) / 1.6
+  np.df$np_bvrt_zscore = (np.df$np_bvrt - np.df$np_bvrt.lookup) / 1.6
   
   np.df$np_digits = sum(c(np.df$np_digitsf, np.df$np_digitsb))
   
@@ -162,57 +162,57 @@ compute_scores <- function(data, vmac_id = NULL) {
   )
   
   np.df$np_tmta_tnt_sscore = case_when(
-    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education <= 12 ~ (np.df$np_tmta - 31.78) / 9.93, 
-    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education > 12 ~ (np.df$np_tmta - 31.78) / 9.93,
+    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 31.78) / 9.93, 
+    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education > 12 ~ -(np.df$np_tmta - 31.78) / 9.93,
     
-    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education <= 12 ~ (np.df$np_tmta - 35.10) / 10.94,
-    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education > 12 ~ (np.df$np_tmta - 31.72) / 10.14,
+    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 35.10) / 10.94,
+    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education > 12 ~ -(np.df$np_tmta - 31.72) / 10.14,
     
-    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education <= 12 ~ (np.df$np_tmta - 33.22) / 9.10,
-    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education > 12 ~ (np.df$np_tmta - 31.32) / 6.96,
+    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 33.22) / 9.10,
+    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education > 12 ~ -(np.df$np_tmta - 31.32) / 6.96,
     
-    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education <= 12 ~ (np.df$np_tmta - 39.14) / 11.84,
-    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education > 12 ~ (np.df$np_tmta - 33.84) / 6.69,
+    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 39.14) / 11.84,
+    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education > 12 ~ -(np.df$np_tmta - 33.84) / 6.69,
     
-    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education <= 12 ~ (np.df$np_tmta - 42.47) / 15.15,
-    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education > 12 ~ (np.df$np_tmta - 40.13) / 14.48,
+    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 42.47) / 15.15,
+    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education > 12 ~ -(np.df$np_tmta - 40.13) / 14.48,
     
-    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education <= 12 ~ (np.df$np_tmta - 50.81) / 17.44,
-    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education > 12 ~ (np.df$np_tmta - 41.75) / 15.32,
+    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 50.81) / 17.44,
+    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education > 12 ~ -(np.df$np_tmta - 41.75) / 15.32,
     
-    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education <= 12 ~ (np.df$np_tmta - 58.19) / 23.31,
-    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education > 12 ~ (np.df$np_tmta - 55.32) / 21.28,
+    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 58.19) / 23.31,
+    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education > 12 ~ -(np.df$np_tmta - 55.32) / 21.28,
     
-    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education <= 12 ~ (np.df$np_tmta - 57.56) / 21.54,
-    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education > 12 ~ (np.df$np_tmta - 63.46) / 29.22,
+    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education <= 12 ~ -(np.df$np_tmta - 57.56) / 21.54,
+    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education > 12 ~ -(np.df$np_tmta - 63.46) / 29.22,
     
     TRUE ~ NA_real_
   )
   
   np.df$np_tmtb_tnt_sscore = case_when(
-    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 63.76) / 14.42,
-    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education > 12 ~ (np.df$np_tmtb - 63.76) / 14.42,
+    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 63.76) / 14.42,
+    np.df$np_age >= 50 & np.df$np_age < 55 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 63.76) / 14.42,
     
-    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 78.84) / 19.09,
-    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education > 12 ~ (np.df$np_tmtb - 68.74) / 21.02,
+    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 78.84) / 19.09,
+    np.df$np_age >= 55 & np.df$np_age < 60 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 68.74) / 21.02,
     
-    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 74.55) / 19.55,
-    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education > 12 ~ (np.df$np_tmtb - 64.58) / 18.59,
+    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 74.55) / 19.55,
+    np.df$np_age >= 60 & np.df$np_age < 65 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 64.58) / 18.59,
     
-    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 91.32) / 28.89,
-    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education > 12 ~ (np.df$np_tmtb - 67.12) / 9.31,
+    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 91.32) / 28.89,
+    np.df$np_age >= 65 & np.df$np_age < 70 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 67.12) / 9.31,
     
-    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 109.95) / 35.15,
-    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education > 12 ~ (np.df$np_tmtb - 86.27) / 24.07,
+    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 109.95) / 35.15,
+    np.df$np_age >= 70 & np.df$np_age < 75 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 86.27) / 24.07,
     
-    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 130.61) / 45.74,
-    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education > 12 ~ (np.df$np_tmtb - 100.68) / 44.16,
+    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 130.61) / 45.74,
+    np.df$np_age >= 75 & np.df$np_age < 80 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 100.68) / 44.16,
     
-    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 152.74) / 65.68,
-    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education > 12 ~ (np.df$np_tmtb - 132.15) / 42.95,
+    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 152.74) / 65.68,
+    np.df$np_age >= 80 & np.df$np_age < 85 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 132.15) / 42.95,
     
-    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education <= 12 ~ (np.df$np_tmtb - 167.69) / 78.50,
-    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education > 12 ~ (np.df$np_tmtb - 140.54) / 75.38,
+    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education <= 12 ~ -(np.df$np_tmtb - 167.69) / 78.50,
+    np.df$np_age >= 85 & np.df$np_age < 110 & np.df$np_education > 12 ~ -(np.df$np_tmtb - 140.54) / 75.38,
     
     TRUE ~ NA_real_
   )
