@@ -255,6 +255,7 @@ np_eligibility.var <- c(
   "np_srt_recog",
   "np_srt_intrus",
   "np_bvrt",
+  "np_bvrt_err",
   "np_digitsf",
   "np_digitsb",
   "np_digitsf_span",
@@ -267,13 +268,22 @@ np_eligibility.var <- c(
   "np_bnt",
   "np_veg",
   "np_tmta",
+  "np_tmta_seqerr",
+  "np_tmta_seterr",
   "np_tmtb",
+  "np_tmtb_seqerr",
+  "np_tmtb_seterr",
   "np_strp_word",
   "np_strp_color",
   "np_strp_colorword",
   "np_cfl_c",
   "np_cfl_f",
-  "np_cfl_l"
+  "np_cfl_l",
+  "np_srt_immed",
+  "np_srt_reps",
+  "np_bvrt_err",
+  "np_cfl_intrus",
+  "np_cfl_reps"
 )
 
 np_epoch5dde_1.var <- c("map_id", "vmac_id", "age", "education", "np_date", "np_examiner", 
