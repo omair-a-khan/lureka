@@ -1,0 +1,237 @@
+---
+output:
+  html_document
+params:
+  vmac_id: "001"
+---
+
+<style type="text/css">
+  body{
+    font-size:  9pt;
+  }
+  h1{
+    font-size: 18pt;
+  }
+  h2{
+    font-size: 14pt;
+  }
+  h3,h4,h5,h6{
+    font-size: 12pt;
+  }
+</style>
+
+# Vanderbilt Memory & Aging Project: Neuropsychological Data Summary Sheet - Eligibility
+
+```{r setup, include = FALSE}
+library(kableExtra)
+
+data.df <- complete_eligibility_data.df[complete_eligibility_data.df$vmac_id == params$vmac_id, ]
+data.df <- map_df(1:nrow(data.df), ~compute_scores(data.df[., ]))
+
+tables.list <- generate_tables(np.df)
+
+knitr::opts_chunk$set(echo = FALSE)
+options(knitr.kable.NA = "--")
+```
+
+```{r}
+tables.list[["metadata_wide.df"]] %>%
+  knitr::kable(., align = 'ccccc', col.names = NULL, table.attr = "style='width:90%;'") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  row_spec(c(1, 3), bold = T)
+```
+
+:::: {style="display: flex; justify-content: space-evenly;"}
+
+::: {style="padding: 1pt;"}
+
+## Global Cognition
+
+### MOCA
+
+```{r}
+knitr::kable(tables.list[["moca.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["moca.df"]]$interpretation == "Impaired", "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["moca.df"]]$interpretation == "Impaired", TRUE, FALSE), FALSE)
+  )
+```
+
+### CDR
+
+```{r}
+knitr::kable(tables.list[["cdr.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+## Learning & Memory
+
+### SRT
+
+```{r}
+knitr::kable(tables.list[["srt.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(abs(tables.list[["srt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+    italic = replace_na(ifelse(abs(tables.list[["srt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+  )
+```
+
+### BVRT
+
+```{r}
+knitr::kable(tables.list[["bvrt.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(abs(tables.list[["bvrt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+    italic = replace_na(ifelse(abs(tables.list[["bvrt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+  )
+```
+
+## Attention: WAIS-III Digit Span
+
+```{r}
+digit_span_output.df <- knitr::kable(tables.list[["digit_span.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["digit_span.df"]]$scaled_score <= -1.5, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["digit_span.df"]]$scaled_score <= -1.5, TRUE, FALSE), FALSE)
+  )
+
+if (pull(tables.list[["digit_span.df"]][3, 3]) < 6) {
+  digit_span_output.df %>%
+    row_spec(
+      3,
+      color = "red",
+      italic = TRUE
+    )
+} else {
+  digit_span_output.df
+}
+```
+
+## Effort: Rey 15 Item Test
+
+```{r}
+knitr::kable(tables.list[["rey15.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+:::
+
+::: {style="padding: 1pt;"}
+
+## Estimated Pre-Morbid Intelligence: WRAT-3 Reading
+
+```{r}
+knitr::kable(tables.list[["wrat3_reading.df"]], digits = 1, align = 'lrrr') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:4, 
+    color = replace_na(ifelse(tables.list[["wrat3_reading.df"]]$scaled_score < 78, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["wrat3_reading.df"]]$scaled_score < 78, TRUE, FALSE), FALSE)
+  )
+```
+
+## Visuospatial Skills: WAIS-IV Block Design
+
+```{r}
+knitr::kable(tables.list[["block_design.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["block_design.df"]]$scaled_score < 6, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["block_design.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+  )
+```
+
+## Language
+
+### BNT-30 Item (Odd)
+
+```{r}
+knitr::kable(tables.list[["bnt.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(abs(tables.list[["bnt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+    italic = replace_na(ifelse(abs(tables.list[["bnt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+  )
+```
+
+### Vegetables
+
+```{r}
+knitr::kable(tables.list[["vegetables.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(abs(tables.list[["vegetables.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+    italic = replace_na(ifelse(abs(tables.list[["vegetables.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+  )
+```
+
+## Executive Functioning/Information Processing
+
+### Trail Making Test
+
+```{r}
+knitr::kable(tables.list[["trail.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["trail.df"]]$scaled_score < 6, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["trail.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+  )
+```
+
+### Stroop
+
+```{r}
+knitr::kable(tables.list[["stroop.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["stroop.df"]]$scaled_score < 6, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["stroop.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+  )
+```
+
+### COWA
+
+```{r}
+knitr::kable(tables.list[["cowa.df"]], digits = 1, align = 'lrr') %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  column_spec(
+    1:3, 
+    color = replace_na(ifelse(tables.list[["cowa.df"]]$scaled_score < 6, "red", "black"), "black"),
+    italic = replace_na(ifelse(tables.list[["cowa.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+  )
+```
+
+<!-- ## Mood: GDS -->
+
+<!-- ```{r} -->
+<!-- knitr::kable(tables.list[["gds.df"]], digits = 1, align = 'lrr') %>%  -->
+<!--   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% -->
+<!--   column_spec( -->
+<!--     1:3,  -->
+<!--     color = replace_na(ifelse(tables.list[["gds.df"]]$score >= 10, "red", "black"), "black"), -->
+<!--     italic = replace_na(ifelse(tables.list[["gds.df"]]$score >= 10, TRUE, FALSE), FALSE) -->
+<!--   ) -->
+<!-- ``` -->
+
+:::
+
+::::
+
+## Notes
+
+```{r, results = 'asis'}
+cat(data.df$np_notes)
+```
