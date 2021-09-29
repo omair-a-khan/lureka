@@ -24,12 +24,12 @@ generate_tables <- function(np.df) {
     
     moca.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$np_moca, np.df$np_moca.interpretation
+      "Total", np.df$np_moca, np.df$np_moca_interpretation
     ),
     
     cdr.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$cdr_score, np.df$cdr_score.interpretation,
+      "Total", np.df$cdr_score, np.df$cdr_score_interpretation,
       "Sum of Scores", np.df$cdr_sum, NA
     ),
     
@@ -128,7 +128,7 @@ generate_tables <- function(np.df) {
     
     gds.df = tibble::tribble(
       ~ item, ~ score, ~ interpretation,
-      "Total", np.df$np_gds, np.df$np_gds.interpretation
+      "Total", np.df$np_gds, np.df$np_gds_interpretation
     )
   )
   

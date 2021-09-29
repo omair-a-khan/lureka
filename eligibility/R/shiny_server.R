@@ -78,18 +78,34 @@ server <- shinyServer(
     output$bvrt.df <- function(){
       reac_tables.list()[["bvrt.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["bvrt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["bvrt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$digit_span.df <- function(){
-      reac_tables.list()[["digit_span.df"]] %>%
+      digit_span_output.df <- reac_tables.list()[["digit_span.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
         kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
         column_spec(
           1:3, 
-          color = replace_na(ifelse(abs(reac_tables.list()[["digit_span.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
-          italic = replace_na(ifelse(abs(reac_tables.list()[["digit_span.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+          color = replace_na(ifelse(reac_tables.list()[["digit_span.df"]]$scaled_score <= -1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["digit_span.df"]]$scaled_score <= -1.5, TRUE, FALSE), FALSE)
         )
+      
+      if (pull(reac_tables.list()[["digit_span.df"]][3, 3]) < 6) {
+        digit_span_output.df %>%
+          row_spec(
+            3,
+            color = "red",
+            italic = TRUE
+          )
+      } else {
+        digit_span_output.df
+      }
     }
     
     output$rey15.df <- function(){
@@ -104,27 +120,42 @@ server <- shinyServer(
         kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
         column_spec(
           1:4, 
-          color = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score <= 77.5, "red", "black"), "black"),
-          italic = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score <= 77.5, TRUE, FALSE), FALSE)
+          color = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score < 78, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["wrat3_reading.df"]]$scaled_score < 78, TRUE, FALSE), FALSE)
         )
     }
     
     output$block_design.df <- function(){
       reac_tables.list()[["block_design.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(reac_tables.list()[["block_design.df"]]$scaled_score < 6, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["block_design.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+        )
     }
     
     output$bnt.df <- function(){
       reac_tables.list()[["bnt.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["bnt.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["bnt.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$vegetables.df <- function(){
       reac_tables.list()[["vegetables.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(abs(reac_tables.list()[["vegetables.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
+          italic = replace_na(ifelse(abs(reac_tables.list()[["vegetables.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+        )
     }
     
     output$trail.df <- function(){
@@ -133,8 +164,8 @@ server <- shinyServer(
         kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
         column_spec(
           1:3, 
-          color = replace_na(ifelse(abs(reac_tables.list()[["trail.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
-          italic = replace_na(ifelse(abs(reac_tables.list()[["trail.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+          color = replace_na(ifelse(reac_tables.list()[["trail.df"]]$scaled_score < 6, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["trail.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
         )
     }
     
@@ -142,21 +173,21 @@ server <- shinyServer(
       reac_tables.list()[["stroop.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
         kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
-      column_spec(
-        1:3, 
-        color = replace_na(ifelse(abs(reac_tables.list()[["stroop.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
-        italic = replace_na(ifelse(abs(reac_tables.list()[["stroop.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
-      )
+        column_spec(
+          1:3, 
+          color = replace_na(ifelse(reac_tables.list()[["stroop.df"]]$scaled_score < 6, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["stroop.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
+        )
     }
     
     output$cowa.df <- function(){
       reac_tables.list()[["cowa.df"]] %>%
         knitr::kable(., digits = 1, align = 'lrr') %>% 
-        kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>%
         column_spec(
           1:3, 
-          color = replace_na(ifelse(abs(reac_tables.list()[["cowa.df"]]$scaled_score) >= 1.5, "red", "black"), "black"),
-          italic = replace_na(ifelse(abs(reac_tables.list()[["cowa.df"]]$scaled_score) >= 1.5, TRUE, FALSE), FALSE)
+          color = replace_na(ifelse(reac_tables.list()[["cowa.df"]]$scaled_score < 6, "red", "black"), "black"),
+          italic = replace_na(ifelse(reac_tables.list()[["cowa.df"]]$scaled_score < 6, TRUE, FALSE), FALSE)
         )
     }
     
@@ -495,11 +526,10 @@ server <- shinyServer(
         # Copy the report file to a temporary directory before processing it, in
         # case we don't have write permissions to the current working dir
         tempReport <- file.path(tempdir(), "summary_sheet.Rmd")
-        file.copy("summary_sheet.Rmd", tempReport, overwrite = TRUE)
+        file.copy("eligibility/R/summary_sheet.Rmd", tempReport, overwrite = TRUE)
         
         # Set up parameters to pass to Rmd document
         params <- list(
-          epoch = input$epoch,
           vmac_id = input$vmac_id
         )
         
