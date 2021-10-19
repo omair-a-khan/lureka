@@ -24,11 +24,11 @@ params:
 
 ```{r setup, include = FALSE}
 library(kableExtra)
+source("~/dev/lureka/eligibility/R/compute_scores.R")
 
 data.df <- complete_eligibility_data.df[complete_eligibility_data.df$vmac_id == params$vmac_id, ]
-data.df <- map_df(1:nrow(data.df), ~compute_scores(data.df[., ]))
 
-tables.list <- generate_tables(np.df)
+tables.list <- generate_tables(data.df)
 
 knitr::opts_chunk$set(echo = FALSE)
 options(knitr.kable.NA = "--")
