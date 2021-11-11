@@ -126,36 +126,36 @@ compute_scores <- function(data, vmac_id = NULL) {
     pull(scaled)
   
   np.df$np_bnt_zscore = case_when(
-    np.df$sex == "Male" ~ (np.df$np_bnt - (25.49287807 + (0.61686473*1) + (-0.05142736*np.df$np_age) + (0.33669818*np.df$np_education))) / 2.992948,
-    np.df$sex == "Female" ~ (np.df$np_bnt - (25.49287807 + (0.61686473*2) + (-0.05142736*np.df$np_age) + (0.33669818*np.df$np_education))) / 2.992948,
+    grepl("^male", np.df$sex, ignore.case = TRUE) ~ (np.df$np_bnt - (25.49287807 + (0.61686473*1) + (-0.05142736*np.df$np_age) + (0.33669818*np.df$np_education))) / 2.992948,
+    grepl("^female", np.df$sex, ignore.case = TRUE) ~ (np.df$np_bnt - (25.49287807 + (0.61686473*2) + (-0.05142736*np.df$np_age) + (0.33669818*np.df$np_education))) / 2.992948,
     TRUE ~ NA_real_
   )
   
   np.df$np_veg_zscore = case_when(
-    np.df$sex == "Male" & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_veg - 11.7) / 1.7,
-    np.df$sex == "Male" & np.df$np_age >= 60 & np.df$np_age < 70 ~ (np.df$np_veg - 11.8) / 2.8,
-    np.df$sex == "Male" & np.df$np_age >= 70 & np.df$np_age < 110 ~ (np.df$np_veg - 12) / 3,
-    np.df$sex == "Female" & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_veg - 17) / 3.8,
-    np.df$sex == "Female" & np.df$np_age >= 60 & np.df$np_age < 70 ~ (np.df$np_veg - 15.4) / 3.8,
-    np.df$sex == "Female" & np.df$np_age >= 70 & np.df$np_age < 110 ~ (np.df$np_veg - 14.2) / 3.5,
+    grepl("^male", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_veg - 11.7) / 1.7,
+    grepl("^male", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 60 & np.df$np_age < 70 ~ (np.df$np_veg - 11.8) / 2.8,
+    grepl("^male", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 70 & np.df$np_age < 110 ~ (np.df$np_veg - 12) / 3,
+    grepl("^female", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_veg - 17) / 3.8,
+    grepl("^female", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 60 & np.df$np_age < 70 ~ (np.df$np_veg - 15.4) / 3.8,
+    grepl("^female", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 70 & np.df$np_age < 110 ~ (np.df$np_veg - 14.2) / 3.5,
     TRUE ~ NA_real_
   )
   
   np.df$np_tmta_moans_sscore = case_when(
-    np.df$race == "White" ~ eligibility_trails_a_w.lookup %>%
+    grepl("^white", np.df$race, ignore.case = TRUE) ~ eligibility_trails_a_w.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_tmta) %>%
       pull(scaled),
-    np.df$race != "White" ~ eligibility_trails_a_b.lookup %>%
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) ~ eligibility_trails_a_b.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_tmta) %>%
       pull(scaled),
     TRUE ~ NA_real_
   )
   
   np.df$np_tmtb_moans_sscore = case_when(
-    np.df$race == "White" ~ eligibility_trails_b_w.lookup %>%
+    grepl("^white", np.df$race, ignore.case = TRUE) ~ eligibility_trails_b_w.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_tmtb) %>%
       pull(scaled),
-    np.df$race != "White" ~ eligibility_trails_b_b.lookup %>%
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) ~ eligibility_trails_b_b.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_tmtb) %>%
       pull(scaled),
     TRUE ~ NA_real_
@@ -218,36 +218,36 @@ compute_scores <- function(data, vmac_id = NULL) {
   )
   
   np.df$np_strp_word_sscore = case_when(
-    np.df$race == "White" & np.df$np_age <= 55 ~ (np.df$np_strp_word - 101.9) / 14.4,
-    np.df$race == "White" & np.df$np_age > 55 ~ eligibility_stroop_word_w.lookup %>%
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age <= 55 ~ (np.df$np_strp_word - 101.9) / 14.4,
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age > 55 ~ eligibility_stroop_word_w.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_word) %>%
       pull(scaled),
-    np.df$race != "White" & np.df$np_age <= 55 ~ (np.df$np_strp_word - 96.2) / 16.9,
-    np.df$race != "White" & np.df$np_age > 55 ~ eligibility_stroop_word_b.lookup %>%
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age <= 55 ~ (np.df$np_strp_word - 96.2) / 16.9,
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age > 55 ~ eligibility_stroop_word_b.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_word) %>%
       pull(scaled),
     TRUE ~ NA_real_
   )
   
   np.df$np_strp_color_sscore = case_when(
-    np.df$race == "White" & np.df$np_age <= 55 ~ (np.df$np_strp_color - 76.4) / 10.8,
-    np.df$race == "White" & np.df$np_age > 55 ~ eligibility_stroop_color_w.lookup %>%
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age <= 55 ~ (np.df$np_strp_color - 76.4) / 10.8,
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age > 55 ~ eligibility_stroop_color_w.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_color) %>%
       pull(scaled),
-    np.df$race != "White" & np.df$np_age <= 55 ~ (np.df$np_strp_color - 70.8) / 13.0,
-    np.df$race != "White" & np.df$np_age > 55 ~ eligibility_stroop_color_b.lookup %>%
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age <= 55 ~ (np.df$np_strp_color - 70.8) / 13.0,
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age > 55 ~ eligibility_stroop_color_b.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_color) %>%
       pull(scaled),
     TRUE ~ NA_real_
   )
   
   np.df$np_strp_colorword_sscore = case_when(
-    np.df$race == "White" & np.df$np_age <= 55 ~ (np.df$np_strp_colorword - 45.0) / 9.5,
-    np.df$race == "White" & np.df$np_age > 55 ~ eligibility_stroop_colorword_w.lookup %>%
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age <= 55 ~ (np.df$np_strp_colorword - 45.0) / 9.5,
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age > 55 ~ eligibility_stroop_colorword_w.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_colorword) %>%
       pull(scaled),
-    np.df$race != "White" & np.df$np_age <= 55 ~ (np.df$np_strp_colorword - 38.2) / 10.2,
-    np.df$race != "White" & np.df$np_age > 55 ~ eligibility_stroop_colorword_b.lookup %>%
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age <= 55 ~ (np.df$np_strp_colorword - 38.2) / 10.2,
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age > 55 ~ eligibility_stroop_colorword_b.lookup %>%
       filter(age == np.df$np_age & raw == np.df$np_strp_colorword) %>%
       pull(scaled),
     TRUE ~ NA_real_
@@ -256,12 +256,12 @@ compute_scores <- function(data, vmac_id = NULL) {
   np.df$np_cfl = sum(c(np.df$np_cfl_c, np.df$np_cfl_f, np.df$np_cfl_l))
   
   np.df$np_cfl_sscore = case_when(
-    np.df$race == "White" & np.df$np_age <= 55 ~ (np.df$np_cfl - 45.31) / 12.96,
-    np.df$race == "White" & np.df$np_age > 55 ~ eligibility_cowa_w.lookup %>% 
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age <= 55 ~ (np.df$np_cfl - 45.31) / 12.96,
+    grepl("^white", np.df$race, ignore.case = TRUE) & np.df$np_age > 55 ~ eligibility_cowa_w.lookup %>% 
       filter(age == np.df$np_age & raw == np.df$np_cfl) %>% 
       pull(scaled),
-    np.df$race != "White" & np.df$np_age <= 55 ~ (np.df$np_cfl - 45.31) / 12.96,
-    np.df$race != "White" & np.df$np_age > 55 ~ eligibility_cowa_b.lookup %>% 
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age <= 55 ~ (np.df$np_cfl - 45.31) / 12.96,
+    (!grepl("^white", np.df$race, ignore.case = TRUE)) & np.df$np_age > 55 ~ eligibility_cowa_b.lookup %>% 
       filter(age == np.df$np_age & raw == np.df$np_cfl) %>% 
       pull(scaled),
     TRUE ~ NA_real_
