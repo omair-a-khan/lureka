@@ -36,24 +36,14 @@ compute_scores <- function(data, vmac_id = NULL) {
   np.df$np_srt_immed = sum(c(np.df$np_srt1, np.df$np_srt2, np.df$np_srt3, np.df$np_srt4, np.df$np_srt5, np.df$np_srt6))
   
   np.df$np_srt_immed_zscore = case_when(
-    np.df$np_age >= 50 & np.df$np_age < 60 & np.df$np_education < 9 ~ (np.df$np_srt_immed - 53.13) / 5.99,
-    np.df$np_age >= 50 & np.df$np_age < 60 & np.df$np_education >= 9 ~ (np.df$np_srt_immed - 53.13) / 5.99,
-    np.df$np_age >= 60 & np.df$np_age < 70 & np.df$np_education < 9 ~ (np.df$np_srt_immed - 39.8) / 10.3,
-    np.df$np_age >= 60 & np.df$np_age < 70 & np.df$np_education >= 9 ~ (np.df$np_srt_immed - 43.5) / 9.3,
-    np.df$np_age >= 70 & np.df$np_age < 80 & np.df$np_education < 9 ~ (np.df$np_srt_immed - 31.8) / 9.5,
-    np.df$np_age >= 70 & np.df$np_age < 80 & np.df$np_education >= 9 ~ (np.df$np_srt_immed - 39.8) / 9.8,
-    np.df$np_age >= 80 & np.df$np_education < 9 ~ (np.df$np_srt_immed - 27.7) / 10.7,
-    np.df$np_age >= 80 & np.df$np_education >= 9 ~ (np.df$np_srt_immed - 34.2) / 11.9,
+    grepl("^male", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_srt_immed - 43.71) / 8.8,
+    grepl("^female", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_srt_immed - 47.75) / 8.5,
     TRUE ~ NA_real_
   )
   
   np.df$np_srt_ldfr_zscore = case_when(
-    np.df$np_age >= 60 & np.df$np_age < 70 & np.df$np_education < 9 ~ (np.df$np_srt_ldfr - 5.3) / 2.8,
-    np.df$np_age >= 60 & np.df$np_age < 70 & np.df$np_education >= 9 ~ (np.df$np_srt_ldfr - 6.7) / 2.8,
-    np.df$np_age >= 70 & np.df$np_age < 80 & np.df$np_education < 9 ~ (np.df$np_srt_ldfr - 4.5) / 2.6,
-    np.df$np_age >= 70 & np.df$np_age < 80 & np.df$np_education >= 9 ~ (np.df$np_srt_ldfr - 5.8) / 2.7,
-    np.df$np_age >= 80 & np.df$np_education < 9 ~ (np.df$np_srt_ldfr - 2.8) / 2.5,
-    np.df$np_age >= 80 & np.df$np_education >= 9 ~ (np.df$np_srt_ldfr - 4.9) / 2.9,
+    grepl("^male", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_srt_ldfr - 6.08) / 2.8,
+    grepl("^female", np.df$sex, ignore.case = TRUE) & np.df$np_age >= 50 & np.df$np_age < 60 ~ (np.df$np_srt_ldfr - 7.84) / 2.5,
     TRUE ~ NA_real_
   )
   
